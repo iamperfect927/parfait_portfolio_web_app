@@ -14,7 +14,7 @@ export const content: ContentType = {
       hireMe: "Hire Me",
     },
     hero: {
-      title: "Hi, I am Parfait, A Frontend Web & Mobile App Developer",
+      title: "Hi, I am a Frontend Web & Mobile App Developer",
       subtitle: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
       resume: "Download Resume",
     },
@@ -58,7 +58,7 @@ export const content: ContentType = {
       hireMe: "Engagez-moi",
     },
     hero: {
-      title: "Salut, je suis Parfait, Développeur Web Frontend & Applications Mobiles",
+      title: "Salut, je suis Développeur Web Frontend & Applications Mobiles",
       subtitle: "Minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
       resume: "Télécharger CV",
     },

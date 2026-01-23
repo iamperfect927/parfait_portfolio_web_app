@@ -30,14 +30,14 @@ export default function Hero() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
               {t("hero.title")}
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            {/* <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               {t("hero.subtitle")}
-            </p>
+            </p> */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                <Button href="#contact" variant="primary" className="shadow-xl shadow-primary/20">
                   {t("nav.hireMe")}
                </Button>
-               <Button href="/resume.pdf" variant="outline">
+               <Button href="./DjielaFomoAyukParfait_RESUME.pdf" variant="outline">
                   {t("hero.resume")}
                </Button>
             </div>
