@@ -3,32 +3,13 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
+import { BlogPost } from "@/types";
 
-const blogPosts = [
-    {
-        id: "1",
-        title: "Mastering React Hooks",
-        excerpt: "A deep dive into useEffect, useState, and custom hooks for better state management.",
-        date: "12 Feb 2024",
-        category: "Development"
-    },
-     {
-        id: "2",
-        title: "Tailwind CSS v4: What's New?",
-        excerpt: "Exploring the new features and performance improvements in the latest Tailwind release.",
-        date: "05 Mar 2024",
-        category: "Design"
-    },
-     {
-        id: "3",
-        title: "Building Accessible Web Apps",
-        excerpt: "Why accessibility matters and how to implement ARIA roles correctly.",
-        date: "20 Jan 2024",
-        category: "Accessibility"
-    }
-]
+interface BlogProps {
+  posts: BlogPost[];
+}
 
-export default function Blog() {
+export default function Blog({ posts }: BlogProps) {
   const { t } = useLanguage();
 
   return (
@@ -39,28 +20,30 @@ export default function Blog() {
                 <h2 className="text-3xl md:text-4xl font-black mb-2">{t("blog.title")}</h2>
                 <div className="h-1 w-20 bg-secondary rounded-full"></div>
              </div>
-             <Link href="#" className="hidden md:block text-secondary font-bold hover:text-secondary-hover transition-colors">
+             <Link href="/blog" className="hidden md:block text-secondary font-bold hover:text-secondary-hover transition-colors">
                 {t("blog.viewAll")} &rarr;
              </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-                <div key={post.id} className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all group cursor-pointer">
+            {posts.slice(0, 3).map((post) => (
+                <Link key={post.id} href={`/blog/${post.id}`} className="group">
+                <div className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all cursor-pointer h-full flex flex-col">
                     <div className="text-sm font-bold text-primary mb-3 uppercase tracking-wider">{post.category}</div>
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{post.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed">
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors text-foreground">{post.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed flex-1 line-clamp-3">
                         {post.excerpt}
                     </p>
-                    <div className="text-xs text-gray-400 font-medium">
+                    <div className="text-xs text-gray-400 font-medium mt-auto">
                         {post.date}
                     </div>
                 </div>
+                </Link>
             ))}
         </div>
          
          <div className="mt-8 text-center md:hidden">
-             <Link href="#" className="text-secondary font-bold hover:text-secondary-hover transition-colors">
+             <Link href="/blog" className="text-secondary font-bold hover:text-secondary-hover transition-colors">
                 {t("blog.viewAll")} &rarr;
              </Link>
          </div>

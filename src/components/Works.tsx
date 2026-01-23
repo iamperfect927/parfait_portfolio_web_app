@@ -1,3 +1,5 @@
+"use client";
+
 import { useLanguage } from "@/context/LanguageContext";
 import { projectsData } from "@/data/projects";
 import { AnimatePresence, motion } from "framer-motion";
