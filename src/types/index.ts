@@ -11,6 +11,12 @@ export interface Project {
   status: 'pending' | 'in-progress' | 'completed';
   link?: string;
   github?: string;
+  // Detailed fields
+  longDescription?: string;
+  gallery?: string[];
+  video?: string;
+  features?: string[];
+  challenges?: string;
 }
 
 export interface BlogPost {
