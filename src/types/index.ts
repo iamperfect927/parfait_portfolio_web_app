@@ -25,6 +25,7 @@ export interface BlogPost {
   excerpt: string;
   date: string;
   readTime: string;
+  category: string;
   image?: string;
   link: string;
 }

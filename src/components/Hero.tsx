@@ -53,10 +53,10 @@ export default function Hero() {
              <div className="relative w-72 h-72 md:w-96 md:h-96">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full opacity-20 blur-2xl animate-pulse"></div>
                  <Image
-                    src="/avatar.svg"
+                    src="/avatar.png"
                     alt="Parfait Avatar"
                     fill
-                    className="object-contain drop-shadow-2xl z-10"
+                    className="object-contain rounded-full drop-shadow-2xl z-10"
                     priority
                  />
                  {/* Decorative Circle Behind */}
