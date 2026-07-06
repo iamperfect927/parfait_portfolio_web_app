@@ -18,25 +18,3 @@ export interface Project {
   features?: string[];
   challenges?: string;
 }
-
-export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image?: string;
-  link: string;
-}
-
-export interface NavLink {
-  name: string;
-  href: string;
-}
-
-export interface Translations {
-  [key: string]: {
-    [key: string]: string;
-  };
-}

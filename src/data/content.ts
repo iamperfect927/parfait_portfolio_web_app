@@ -1,4 +1,3 @@
-import { Translations } from "@/types";
 
 interface ContentType {
     en: any;
@@ -9,7 +8,6 @@ export const content: ContentType = {
   en: {
     nav: {
       works: "Works",
-      blog: "Blog",
       contact: "Contact",
       hireMe: "Hire Me",
     },
@@ -34,10 +32,7 @@ export const content: ContentType = {
           school: "School"
       }
     },
-    blog: {
-      title: "Recent Posts",
-      viewAll: "View all"
-    },
+
     contact: {
       title: "Get In Touch",
       subtitle: "Have a project in mind or just want to say hi? Fill out the form below.",
@@ -53,7 +48,6 @@ export const content: ContentType = {
   fr: {
     nav: {
       works: "Projets",
-      blog: "Blog",
       contact: "Contact",
       hireMe: "Engagez-moi",
     },
@@ -78,10 +72,7 @@ export const content: ContentType = {
           school: "École"
       }
     },
-    blog: {
-      title: "Articles Récents",
-      viewAll: "Voir tout"
-    },
+
     contact: {
       title: "Me Contacter",
       subtitle: "Vous avez un projet en tête ou voulez simplement dire bonjour ? Remplissez le formulaire ci-dessous.",

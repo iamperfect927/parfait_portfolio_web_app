@@ -4,9 +4,6 @@ import React, { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { projectsData } from "@/data/projects";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Button from "@/components/Button";
 import { notFound } from "next/navigation";
 
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -17,10 +14,13 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
     notFound();
   }
 
+  // Button styles
+  const baseBtn = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold text-sm md:text-base transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer";
+  const primaryBtn = `${baseBtn} bg-primary text-white shadow-lg hover:shadow-primary/40 hover:bg-primary-hover`;
+  const outlineBtn = `${baseBtn} border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-primary`;
+
   return (
     <main className="bg-white dark:bg-dark min-h-screen transition-colors duration-300">
-      <Navbar />
-
       {/* Hero Header */}
       <div className="relative h-[60vh] w-full pt-20">
         <Image
@@ -32,7 +32,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
         />
         <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center px-4 max-w-4xl mx-auto">
-                <span className={`inline-block px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-6 bg-primary text-white`}>
+                <span className="inline-block px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-6 bg-primary text-white">
                     {project.category}
                 </span>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 drop-shadow-lg">{project.title}</h1>
@@ -94,27 +94,27 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                      <h3 className="text-lg font-bold mb-6 text-foreground uppercase tracking-widest border-b border-gray-200 dark:border-gray-700 pb-2">Project Info</h3>
                      
                      <div className="space-y-6">
-                         <div>
-                             <span className="block text-sm text-gray-500 mb-1">Status</span>
-                             <span className="text-lg font-bold text-foreground capitalize">{project.status}</span>
-                         </div>
-                         <div>
-                             <span className="block text-sm text-gray-500 mb-1">Technologies</span>
-                             <div className="flex flex-wrap gap-2 mt-2">
-                                 {project.tags.map(tag => (
-                                     <span key={tag} className="text-xs font-bold px-3 py-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-foreground">
-                                         {tag}
-                                     </span>
-                                 ))}
-                             </div>
-                         </div>
-                         <div>
-                             <span className="block text-sm text-gray-500 mb-1">Links</span>
-                             <div className="flex flex-col gap-3 mt-2">
-                                <Button href="#" variant="primary" className="w-full justify-center">Visit Live Site</Button>
-                                <Button href="#" variant="outline" className="w-full justify-center">View Code</Button>
-                             </div>
-                         </div>
+                          <div>
+                              <span className="block text-sm text-gray-500 mb-1">Status</span>
+                              <span className="text-lg font-bold text-foreground capitalize">{project.status}</span>
+                          </div>
+                          <div>
+                              <span className="block text-sm text-gray-500 mb-1">Technologies</span>
+                              <div className="flex flex-wrap gap-2 mt-2">
+                                  {project.tags.map(tag => (
+                                      <span key={tag} className="text-xs font-bold px-3 py-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-foreground">
+                                          {tag}
+                                      </span>
+                                  ))}
+                              </div>
+                          </div>
+                          <div>
+                              <span className="block text-sm text-gray-500 mb-1">Links</span>
+                              <div className="flex flex-col gap-3 mt-2">
+                                 <Link href="#" className={`${primaryBtn} w-full justify-center`}>Visit Live Site</Link>
+                                 <Link href="#" className={`${outlineBtn} w-full justify-center`}>View Code</Link>
+                              </div>
+                          </div>
                      </div>
                  </div>
             </div>
@@ -165,7 +165,6 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
         </div>
 
       </div>
-      <Footer />
     </main>
   );
 }
