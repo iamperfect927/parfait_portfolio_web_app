@@ -119,13 +119,14 @@ function Navbar() {
   };
 
   return (
+    <>
     <nav className="fixed w-full z-50 top-0 left-0 bg-background backdrop-blur-md transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Left: Logo */}
           <div className="flex-1 flex justify-start">
             <Link href="/" className="text-2xl font-black text-foreground whitespace-nowrap">
-              Parfait<span className="text-primary">.dev</span>
+              Parfait<span className="text-primary text-lg">.dev</span>
             </Link>
           </div>
 
@@ -172,8 +173,11 @@ function Navbar() {
           </div>
         </div>
       </div>
+    </nav>
 
-      {/* Mobile / tablet menu */}
+      {/* Mobile / tablet menu — rendered as a sibling of <nav>, not a child,
+          so its `fixed` positioning is measured against the real viewport
+          instead of being contained by nav's backdrop-blur filter box. */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -187,15 +191,24 @@ function Navbar() {
               className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
             />
 
-            {/* Slide-in panel, 50% width, left to right */}
+            {/* Slide-in panel, 50% width, right to left */}
             <motion.div
-              initial={{ x: "-100%" }}
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "tween", duration: 0.35, ease: "easeInOut" }}
-              className="lg:hidden fixed top-0 left-0 h-screen w-1/2 min-w-[260px] bg-background z-50 shadow-2xl"
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
+              className="lg:hidden fixed top-0 right-0 h-screen w-1/2 min-w-[260px] bg-background z-50 shadow-2xl"
             >
-              <div className="flex flex-col items-start justify-center h-full gap-8 px-8">
+              {/* Close button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                aria-label="Close Menu"
+                className="absolute top-6 right-6 text-foreground p-1 hover:text-primary transition-colors"
+              >
+                <MenuIcon open={true} />
+              </button>
+
+              <div className="flex flex-col items-start justify-start h-full gap-4 px-8 py-20">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
@@ -207,7 +220,7 @@ function Navbar() {
                   </Link>
                 ))}
 
-                <div className="flex items-center gap-6 pt-2">
+                <div className="flex items-center gap-8 py-4">
                   <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-foreground hover:text-primary transition-colors">
                     <GithubIcon />
                   </a>
@@ -224,7 +237,7 @@ function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }
 
