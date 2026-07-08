@@ -7,15 +7,21 @@ interface ContentType {
 export const content: ContentType = {
   en: {
     nav: {
-      works: "Works",
+      home: "Home",
+      about: "About",
+      services: "Services",
+      projects: "Projects",
       contact: "Contact",
-      hireMe: "Hire Me",
     },
     hero: {
-      title: "Hi, I am a Frontend Web & Mobile App Developer",
-      subtitle: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-      resume: "Download Resume",
-    },
+  greeting: "👋 Hi there, I'm Parfait",
+  title: "Building Seamless",
+  titleHighlight: "Web & Mobile Experiences.",
+  description: "I'm a frontend developer with 4+ years of experience turning ideas into fast, accessible products — from responsive websites to cross-platform mobile apps.",
+  experience: "4+ Years of Experience",
+  resume: "Download CV",
+  hireMe: "Hire Me",
+},
     about: {
       title: "About Me",
       desc1: "I am a passionate Full Stack Developer with experience in building web and mobile applications.",
@@ -47,9 +53,11 @@ export const content: ContentType = {
   },
   fr: {
     nav: {
-      works: "Projets",
+      home: "Accueil",
+      about: "À Propos",
+      services: "Services",
+      projects: "Projets",
       contact: "Contact",
-      hireMe: "Engagez-moi",
     },
     hero: {
       title: "Salut, je suis Développeur Web Frontend & Applications Mobiles",
