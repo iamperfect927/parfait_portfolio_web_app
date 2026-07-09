@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ThemeProvider, useTheme } from "@/context/ThemeContext";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
+import FAB from "@/components/FAB";
 import "./globals.css";
 
 /* ---------- Icons ---------- */
@@ -259,6 +260,7 @@ function Footer() {
     { name: t("nav.about"), href: "#about" },
     { name: t("nav.services"), href: "#services" },
     { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.testimonials"), href: "#testimonials" },
     { name: t("nav.contact"), href: "#contact" },
   ];
 
@@ -271,14 +273,14 @@ function Footer() {
           {/* Brand + blurb */}
           <div className="lg:col-span-2 max-w-sm">
             <Link href="/" className="text-2xl font-black text-foreground whitespace-nowrap">
-              Parfait<span className="text-primary">.dev</span>
+              Parfait<span className="text-primary text-lg">.dev</span>
             </Link>
             <p className="text-foreground/50 mt-4 leading-relaxed">
               {t("footer.blurb")}
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a
-                href="https://github.com/"
+                href="https://github.com/iamperfect927/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -287,7 +289,7 @@ function Footer() {
                 <GithubIcon />
               </a>
               <a
-                href="https://linkedin.com/"
+                href="https://linkedin.com/iamperfect927/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -321,18 +323,18 @@ function Footer() {
             <ul className="flex flex-col gap-3">
               <li>
                 <a
-                  href="mailto:contact@parfait.dev"
+                  href="mailto:djielaparfait99@gmail.com"
                   className="text-foreground/50 hover:text-primary transition-colors"
                 >
-                  contact@parfait.dev
+                  djielaparfait99@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+237XXXXXXXXX"
+                  href="tel:+237652768274"
                   className="text-foreground/50 hover:text-primary transition-colors"
                 >
-                  +237 XXX XXX XXX
+                  +237 652 768 274
                 </a>
               </li>
               <li className="text-foreground/50">{t("footer.location")}</li>
@@ -341,25 +343,18 @@ function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8">
+        <div className="flex  items-center justify-center gap-4 pt-8">
           <p className="text-foreground/40 text-sm text-center sm:text-left">
             © {year} Parfait.dev — {t("footer.rights")}
           </p>
 
-          <p className="text-foreground/40 text-sm flex items-center gap-1.5">
-            {t("footer.builtWith")}
-            <span className="text-text-accent font-medium">Next.js</span>
-            {t("footer.and")}
-            <span className="text-text-accent font-medium">Tailwind CSS</span>
-          </p>
-
-          <button
+          {/* <button
             onClick={scrollToTop}
             aria-label="Back to top"
             className="w-10 h-10 flex items-center justify-center rounded-full bg-background text-foreground hover:bg-primary hover:text-white transition-colors shrink-0"
           >
             <BackToTopIcon />
-          </button>
+          </button> */}
         </div>
       </div>
     </footer>
@@ -389,6 +384,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <Footer />
+            <FAB />
           </LanguageProvider>
         </ThemeProvider>
       </body>

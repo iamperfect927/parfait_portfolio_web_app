@@ -95,10 +95,8 @@ export const content: ContentType = {
       blurb: "Frontend developer building mobile apps, websites, and AI-powered products — from first idea to final deploy.",
       linksTitle: "Quick Links",
       contactTitle: "Get in Touch",
-      location: "Yaoundé, Cameroon",
+      location: "Buea, Cameroon",
       rights: "All rights reserved.",
-      builtWith: "Built with",
-      and: "and",
     },
 
 

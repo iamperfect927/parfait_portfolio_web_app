@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -34,45 +34,80 @@ export default function Home() {
   ];
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  // TODO: replace with real testimonials before publishing
+  const scrollToIndex = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[index] as HTMLElement | undefined;
+    if (!card) return;
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+  };
+
+  const nextTestimonial = () =>
+    scrollToIndex((activeTestimonial + 1) % testimonials.length);
+  const prevTestimonial = () =>
+    scrollToIndex((activeTestimonial - 1 + testimonials.length) % testimonials.length);
+
+  // Keeps `activeTestimonial` in sync when the user swipes/drags manually
+  const handleScroll = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardWidth = (track.children[0] as HTMLElement)?.offsetWidth ?? 1;
+    const gap = 24; // matches gap-6
+    const index = Math.round(track.scrollLeft / (cardWidth + gap));
+    setActiveTestimonial(Math.min(index, testimonials.length - 1));
+  };
+
+  // Auto-slide
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setActiveTestimonial((i) => {
+        const next = (i + 1) % testimonials.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // SAMPLE DATA — for layout/testing only. Replace with real client
+  // testimonials before publishing; do not ship invented reviews.
+  // Avatars are generated illustrations (DiceBear), not real people.
   const testimonials = [
     {
       name: "Amara Nwosu",
       role: "Founder, Lumen Retail",
-      avatar: "/testimonials/placeholder-1.jpg",
+      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Amara+Nwosu&backgroundColor=1f1f24",
       text: "Parfait built our mobile app from scratch and it's been rock solid since launch. Clear communication throughout and he actually pushed back on features that would've slowed the app down — that kind of judgment is rare.",
     },
     {
       name: "David Okonkwo",
       role: "CTO, Fintrack Solutions",
-      avatar: "/testimonials/placeholder-2.jpg",
+      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=David+Okonkwo&backgroundColor=1f1f24",
       text: "We brought Parfait in to rebuild our web dashboard and automate a chunk of our manual reporting with AI. Both shipped on time, and the automation alone saved our team several hours a week.",
     },
     {
       name: "Sofia Marchetti",
       role: "Product Lead, Nimbus Health",
-      avatar: "/testimonials/placeholder-3.jpg",
+      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Sofia+Marchetti&backgroundColor=1f1f24",
       text: "Great eye for product design, not just execution. Parfait asked the right questions early on and the final product needed far fewer revisions than I expected going in.",
     },
     {
       name: "Jean-Baptiste Kamga",
       role: "Founder, Marché Digital",
-      avatar: "/testimonials/placeholder-4.jpg",
+      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Jean-Baptiste+Kamga&backgroundColor=1f1f24",
       text: "Our e-commerce site needed to work well on low-end phones across shaky connections, which is a hard constraint. Parfait understood that from the first call and delivered exactly what we needed.",
     },
     {
       name: "Hannah Reyes",
       role: "Operations Manager, Clearpath Logistics",
-      avatar: "/testimonials/placeholder-5.jpg",
+      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Hannah+Reyes&backgroundColor=1f1f24",
       text: "The AI automation Parfait set up for our scheduling workflow replaced a process that used to take one of our staff half a day every week. Straightforward to work with and genuinely solved a real problem for us.",
     },
   ];
-
-  const nextTestimonial = () =>
-    setActiveTestimonial((i) => (i + 1) % testimonials.length);
-  const prevTestimonial = () =>
-    setActiveTestimonial((i) => (i - 1 + testimonials.length) % testimonials.length);
 
   //contact form
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
@@ -97,10 +132,10 @@ export default function Home() {
   };
 
   const contactInfo = [
-    { label: "Email", value: "contact@parfait.dev", href: "mailto:contact@parfait.dev", Icon: MailIcon },
-    { label: "Phone", value: "+237 XXX XXX XXX", href: "tel:+237XXXXXXXXX", Icon: PhoneIcon },
-    { label: "GitHub", value: "@parfait", href: "https://github.com/", external: true, Icon: GithubIcon },
-    { label: "LinkedIn", value: "Parfait Djiela", href: "https://linkedin.com/", external: true, Icon: LinkedinIcon },
+    { label: "Email", value: "djielaparfait99@gmail.com", href: "mailto:djielaparfait99@gmail.com", Icon: MailIcon },
+    { label: "Phone", value: "+237 652 768 274", href: "tel:+237652768274", Icon: PhoneIcon },
+    { label: "GitHub", value: "@iamperfect927", href: "https://github.com/iamperfect927/", external: true, Icon: GithubIcon },
+    { label: "LinkedIn", value: "Djiela Parfait", href: "https://linkedin.com/iamperfect927/", external: true, Icon: LinkedinIcon },
   ];
 
   // Button styles
@@ -330,7 +365,7 @@ export default function Home() {
                 t("about.skill3"),
                 t("about.skill4"),
               ].map((service, i) => (
-                <span key={`${service}-${i}`} className="flex items-center text-xl font-bold mx-4">
+                <span key={`${service}-${i}`} className="flex items-center text-md md:text-lg font-bold mx-4">
                   <span className="text-text-accent mx-2">✦</span>
                   <span className="text-foreground">{service}</span>
                   <span className="text-text-accent mx-2">✦</span>
@@ -498,7 +533,7 @@ export default function Home() {
       <section id="projects" className="pt-24 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header row */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 ">
             <div className="max-w-xl">
               <h2 className="text-3xl md:text-4xl font-black mb-4 text-text-secondary">{t("works.title")}</h2>
               <p className="text-foreground/60 text-lg">{t("works.subtitle")}</p>
@@ -540,7 +575,7 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="group bg-white rounded-2xl overflow-hidden p-3 md:p-4"
+                  className="group bg-foreground/20 rounded-2xl overflow-hidden p-3 md:p-4"
                 >
                   <Link href={`/works/${project.id}`} className="block">
                     <div className="relative h-64 w-full overflow-hidden rounded-xl">
@@ -555,8 +590,8 @@ export default function Home() {
 
                     <div className="flex items-center gap-4 mt-4">
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 truncate">{project.title}</h3>
-                        <p className="text-sm text-gray-500 truncate">{project.description}</p>
+                        <h3 className="font-semibold text-text-foreground truncate">{project.title}</h3>
+                        <p className="text-sm text-text-foreground/40 truncate">{project.description}</p>
                       </div>
                       <span className="w-11 h-11 flex items-center justify-center rounded-full bg-gray-100 text-gray-900 shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                         <ArrowRightIcon />
@@ -641,7 +676,7 @@ export default function Home() {
       */}
       <section id="testimonials" className="py-24 bg-background-accent relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,340px)_1fr] gap-16 items-start">
+          <div className="flex flex-col gap-16 items-start">
             {/* Left: title + nav */}
             <div>
               <span className="inline-block text-text-secondary font-medium mb-3">
@@ -672,16 +707,19 @@ export default function Home() {
             </div>
 
             {/* Right: testimonial slider */}
-            <div className="relative overflow-hidden">
-              <motion.div
-                className="flex gap-6"
-                animate={{ x: `-${activeTestimonial * 100}%` }}
-                transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
+            <div
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div
+                ref={trackRef}
+                onScroll={handleScroll}
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
               >
                 {testimonials.map((item) => (
                   <div
                     key={item.name}
-                    className="w-full shrink-0 bg-background rounded-2xl p-8 md:p-10"
+                    className="w-[300px] sm:w-[340px] h-[280px] shrink-0 snap-start bg-background rounded-2xl p-8 md:p-10 flex flex-col"
                   >
                     <div className="flex items-center gap-4 mb-6">
                       <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 bg-background-accent">
@@ -692,13 +730,29 @@ export default function Home() {
                         <span className="text-sm text-foreground/50">{item.role}</span>
                       </div>
                     </div>
-                    <p className="text-foreground/70 leading-relaxed">{item.text}</p>
+                    <p className="text-foreground/70 leading-relaxed line-clamp-5 overflow-hidden">{item.text}</p>
                   </div>
                 ))}
-              </motion.div>
+              </div>
+
+              {/* Square pagination */}
+              <div className="flex items-center justify-center gap-2 mt-6">
+                {testimonials.map((item, index) => (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToIndex(index)}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                    aria-current={activeTestimonial === index}
+                    className={`h-2 rounded-sm transition-all ${activeTestimonial === index
+                      ? "w-8 bg-primary"
+                      : "w-2 bg-background-accent opacity-60 hover:opacity-100"
+                      }`}
+                  />
+                ))}
+              </div>
 
               {/* Mobile nav (arrows sit below the card on small screens) */}
-              <div className="flex lg:hidden gap-3 mt-6">
+              <div className="flex lg:hidden justify-center gap-3 mt-6">
                 <button
                   onClick={prevTestimonial}
                   aria-label="Previous testimonial"
@@ -720,7 +774,7 @@ export default function Home() {
       </section>
 
       {/* ─── Contact Section ─── */}
-      <section id="contact" className="relative pt-24 pb-32 md:pb-48 bg-background overflow-hidden">
+      <section id="contact" className="relative py-24 bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Heading */}
           <motion.div
@@ -728,7 +782,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-2xl mb-16"
+            className="max-w-2xl mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-text-accent">
               {t("contact.title")}
@@ -736,9 +790,9 @@ export default function Home() {
             <p className="text-foreground/60 text-lg">{t("contact.subtitle")}</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2">
             {/* Left: contact info */}
-            <div className="lg:col-span-4 flex flex-col gap-6">
+            <div className="lg:col-span-4 flex flex-col gap-1">
               {contactInfo.map((item) => (
                 <a
                   key={item.label}
@@ -747,7 +801,7 @@ export default function Home() {
                   rel={item.external ? "noopener noreferrer" : undefined}
                   className="group relative flex items-center gap-4 bg-background rounded-2xl p-5 hover:bg-primary/10 transition-colors"
                 >
-                  <span className="w-14 h-14 flex items-center justify-center rounded-xl bg-background-accent text-text-accent shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                  <span className="w-14 h-14 flex items-center justify-center rounded-xl bg-background-accent text-text-accent shrink-0 group-hover:bg-primary group-hover:text-white transition-colors border-text-secondary border-t border-l border-r">
                     <item.Icon />
                   </span>
                   <div>
