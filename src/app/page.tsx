@@ -400,24 +400,35 @@ function PhoneIcon() {
         </div>
       </section>
 
-      {/* ─── Works Section ─── */}
-      <section id="works" className="py-20 bg-background">
+      {/* ─── Projects Section ─── */}
+      <section id="projects" className="pt-24 pb-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">{t("works.title")}</h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{t("works.subtitle")}</p>
+          {/* Header row */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+            <div className="max-w-xl">
+              <h2 className="text-3xl md:text-4xl font-black mb-4 text-text-secondary">{t("works.title")}</h2>
+              <p className="text-foreground/60 text-lg">{t("works.subtitle")}</p>
+            </div>
+
+            <Link
+              href="/works"
+              className={`${primaryBtn} hidden lg:inline-flex items-center justify-center shrink-0`}
+            >
+              {t("works.viewAll")}
+              <ArrowRightIcon />
+            </Link>
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap gap-3 mb-12">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-bold capitalize transition-all ${
+                className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
                   filter === cat
                     ? "bg-primary text-white shadow-lg shadow-primary/30"
-                    : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    : "bg-background-accent text-foreground/50 hover:text-foreground"
                 }`}
               >
                 {t(`works.filter.${cat}`) || cat}
@@ -426,42 +437,37 @@ function PhoneIcon() {
           </div>
 
           {/* Grid */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatePresence>
               {filtered.map((project) => (
                 <motion.div
                   layout
                   key={project.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow group border border-gray-100 dark:border-gray-800 h-full flex flex-col"
+                  className="group bg-white rounded-2xl overflow-hidden p-3 md:p-4"
                 >
-                  <Link href={`/works/${project.id}`} className="block h-full">
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
-                      <Image src={project.image} alt={project.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
-                      <div className="absolute top-4 right-4">
-                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                          project.status === "completed" ? "bg-green-100 text-green-700" :
-                          project.status === "in-progress" ? "bg-blue-100 text-blue-700" :
-                          "bg-yellow-100 text-yellow-700"
-                        }`}>
-                          {project.status}
-                        </span>
-                      </div>
+                  <Link href={`/works/${project.id}`} className="block">
+                    <div className="relative h-64 w-full overflow-hidden rounded-xl">
+                      <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
-                    <div className="p-6 flex-1 flex flex-col">
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mt-auto">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300">
-                            #{tag}
-                          </span>
-                        ))}
+
+                    <div className="flex items-center gap-4 mt-4">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-gray-900 truncate">{project.title}</h3>
+                        <p className="text-sm text-gray-500 truncate">{project.description}</p>
                       </div>
+                      <span className="w-11 h-11 flex items-center justify-center rounded-full bg-gray-100 text-gray-900 shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <ArrowRightIcon />
+                      </span>
                     </div>
                   </Link>
                 </motion.div>
@@ -469,6 +475,69 @@ function PhoneIcon() {
             </AnimatePresence>
           </motion.div>
         </div>
+      </section>
+
+      {/* ─── Tools & Technologies Marquee ─── */}
+      <section className="py-24 bg-background-accent relative overflow-hidden">
+        {/* Grid background */}
+       <div
+         className="absolute inset-0 z-0 opacity-[0.07]"
+         style={{
+          backgroundImage: `
+           linear-gradient(to right, #ffffff 1px, transparent 1px),
+           linear-gradient(to bottom, #ffffff 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+         }}
+       />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-black mb-4">{t("tools.title")}</h2>
+          <p className="text-foreground/60 text-lg">{t("tools.subtitle")}</p>
+        </div>
+
+        <div className="tools-marquee-container relative">
+          <div className="tools-marquee-track flex items-center whitespace-nowrap">
+            {/* Render the list twice back-to-back so the loop is seamless */}
+            {[0, 1].map((repeat) => (
+              <div key={repeat} className="flex items-center shrink-0" aria-hidden={repeat === 1}>
+                {techStack.map(({ name, Icon, color }) => (
+                  <div
+                    key={name}
+                    title={name}
+                    className="flex flex-col items-center justify-center gap-3 mx-8 md:mx-10"
+                  >
+                    <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-2xl bg-background">
+                      <Icon className="w-7 h-7 md:w-8 md:h-8" style={{ color }} />
+                    </div>
+                    <span className="text-xs text-foreground/40 font-medium">{name}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          {/* Fade edges so logos don't clip abruptly at the container edge */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent" />
+        </div>
+
+        <style jsx>{`
+          .tools-marquee-track {
+            width: max-content;
+            animation: tools-marquee 28s linear infinite;
+          }
+          .tools-marquee-track:hover {
+            animation-play-state: paused;
+          }
+          @keyframes tools-marquee {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
       </section>
 
       {/* ─── Contact Section ─── */}

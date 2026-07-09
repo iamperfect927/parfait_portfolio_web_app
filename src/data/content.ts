@@ -51,15 +51,22 @@ services: {
   item4Desc: "End-to-end product design, from concept and UX to a polished, shippable build.",
 },
     works: {
-      title: "Featured Works",
-      subtitle: "Explore my latest projects, ranging from web applications to mobile UI designs.",
+      title: "My Latest Works",
+      subtitle: "I believe that working hard and trying to learn every day will make me improve in satisfying my customers.",
       filter: {
           all: "All Categories",
           personal: "Personal",
           client: "Client",
           school: "School"
-      }
+      },
+      viewAll: "View All Projects",
     },
+    tools: {
+  title: "Tools & Technologies I Work With",
+  // Trusted by industry leaders
+  subtitle: "The languages, frameworks, and platforms I use to build mobile apps, websites, and AI-powered products.",
+  // I have collaborated with many large corporations, companies, and agencies around the world in many fields of design and consulting
+},
 
     contact: {
       title: "Get In Touch",
