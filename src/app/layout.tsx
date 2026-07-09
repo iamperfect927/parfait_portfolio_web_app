@@ -90,6 +90,7 @@ function Navbar() {
     { name: t("nav.about"), href: "#about" },
     { name: t("nav.services"), href: "#services" },
     { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.testimonials"), href: "#testimonials" },
     { name: t("nav.contact"), href: "#contact" },
   ];
 
@@ -106,74 +107,72 @@ function Navbar() {
 
   const linkClasses = (href: string) => {
     const isActive = activeSection === href.replace("#", "");
-    return `font-medium transition-colors whitespace-nowrap ${
-      isActive ? "text-foreground font-semibold" : "text-foreground/40 hover:text-primary"
-    }`;
+    return `font-medium transition-colors whitespace-nowrap ${isActive ? "text-foreground font-semibold" : "text-foreground/40 hover:text-primary"
+      }`;
   };
 
   const mobileLinkClasses = (href: string) => {
     const isActive = activeSection === href.replace("#", "");
-    return `text-2xl font-bold transition-colors ${
-      isActive ? "text-foreground" : "text-foreground/40 hover:text-primary"
-    }`;
+    return `text-2xl font-bold transition-colors ${isActive ? "text-foreground" : "text-foreground/40 hover:text-primary"
+      }`;
   };
 
   return (
     <>
-    <nav className="fixed w-full z-50 top-0 left-0 bg-background backdrop-blur-md transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
-          {/* Left: Logo */}
-          <div className="flex-1 flex justify-start">
-            <Link href="/" className="text-2xl font-black text-foreground whitespace-nowrap">
-              Parfait<span className="text-primary text-lg">.dev</span>
-            </Link>
-          </div>
-
-          {/* Center: Nav links (desktop / tablet landscape only) */}
-          <div className="hidden lg:flex flex-1 items-center justify-center gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className={linkClasses(link.href)}>
-                {link.name}
+      <nav className="fixed w-full z-50 top-0 left-0 bg-background backdrop-blur-md transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20 gap-4">
+            {/* Left: Logo */}
+            <div className="flex-1 flex justify-start">
+              <Link href="/" className="text-2xl font-black text-foreground whitespace-nowrap">
+                Parfait<span className="text-primary text-lg">.dev</span>
               </Link>
-            ))}
-          </div>
+            </div>
 
-          {/* Right: Social + language (desktop / tablet landscape only) */}
-          <div className="hidden lg:flex flex-1 items-center justify-end gap-5">
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              <GithubIcon />
-            </a>
-            <a
-              href="https://linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              <LinkedinIcon />
-            </a>
-            <div className="h-6 w-px bg-gray-200 dark:bg-gray-700" />
-            <button onClick={toggleLanguage} className="text-sm font-bold uppercase hover:text-primary transition-colors">
-              {language}
-            </button>
-          </div>
+            {/* Center: Nav links (desktop / tablet landscape only) */}
+            <div className="hidden lg:flex flex-1 items-center justify-center gap-8">
+              {navLinks.map((link) => (
+                <Link key={link.name} href={link.href} className={linkClasses(link.href)}>
+                  {link.name}
+                </Link>
+              ))}
+            </div>
 
-          {/* Mobile / tablet controls */}
-          <div className="flex lg:hidden items-center gap-3">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-foreground p-1" aria-label="Toggle Menu">
-              <MenuIcon open={isOpen} />
-            </button>
+            {/* Right: Social + language (desktop / tablet landscape only) */}
+            <div className="hidden lg:flex flex-1 items-center justify-end gap-5">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                <GithubIcon />
+              </a>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                <LinkedinIcon />
+              </a>
+              <div className="h-6 w-px bg-gray-200 dark:bg-gray-700" />
+              <button onClick={toggleLanguage} className="text-sm font-bold uppercase hover:text-primary transition-colors">
+                {language}
+              </button>
+            </div>
+
+            {/* Mobile / tablet controls */}
+            <div className="flex lg:hidden items-center gap-3">
+              <button onClick={() => setIsOpen(!isOpen)} className="text-foreground p-1" aria-label="Toggle Menu">
+                <MenuIcon open={isOpen} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
       {/* Mobile / tablet menu — rendered as a sibling of <nav>, not a child,
           so its `fixed` positioning is measured against the real viewport
@@ -243,23 +242,125 @@ function Navbar() {
 
 /* ---------- Footer ---------- */
 
+function BackToTopIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+    </svg>
+  );
+}
+
 function Footer() {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
 
+  const quickLinks = [
+    { name: t("nav.home"), href: "#home" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.services"), href: "#services" },
+    { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.contact"), href: "#contact" },
+  ];
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
   return (
-    <footer className="bg-white dark:bg-dark border-t border-gray-100 dark:border-gray-800 py-12 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center gap-6">
-        <div className="text-2xl font-black text-foreground">
-          Parfait<span className="text-primary">.</span>
+    <footer className="relative bg-background-accent pt-20 pb-8 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-white/10">
+          {/* Brand + blurb */}
+          <div className="lg:col-span-2 max-w-sm">
+            <Link href="/" className="text-2xl font-black text-foreground whitespace-nowrap">
+              Parfait<span className="text-primary">.dev</span>
+            </Link>
+            <p className="text-foreground/50 mt-4 leading-relaxed">
+              {t("footer.blurb")}
+            </p>
+            <div className="flex items-center gap-4 mt-6">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-background text-foreground hover:bg-primary hover:text-white transition-colors"
+              >
+                <GithubIcon />
+              </a>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-background text-foreground hover:bg-primary hover:text-white transition-colors"
+              >
+                <LinkedinIcon />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <h6 className="font-bold text-foreground mb-5">{t("footer.linksTitle")}</h6>
+            <ul className="flex flex-col gap-3">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-foreground/50 hover:text-primary transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h6 className="font-bold text-foreground mb-5">{t("footer.contactTitle")}</h6>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <a
+                  href="mailto:contact@parfait.dev"
+                  className="text-foreground/50 hover:text-primary transition-colors"
+                >
+                  contact@parfait.dev
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+237XXXXXXXXX"
+                  className="text-foreground/50 hover:text-primary transition-colors"
+                >
+                  +237 XXX XXX XXX
+                </a>
+              </li>
+              <li className="text-foreground/50">{t("footer.location")}</li>
+            </ul>
+          </div>
         </div>
-        <div className="flex space-x-6">
-          {["Facebook", "Twitter", "Instagram", "Linkedin"].map((social) => (
-            <a key={social} href="#" className="text-gray-500 hover:text-primary transition-colors font-medium">
-              {social}
-            </a>
-          ))}
+
+        {/* Bottom bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8">
+          <p className="text-foreground/40 text-sm text-center sm:text-left">
+            © {year} Parfait.dev — {t("footer.rights")}
+          </p>
+
+          <p className="text-foreground/40 text-sm flex items-center gap-1.5">
+            {t("footer.builtWith")}
+            <span className="text-text-accent font-medium">Next.js</span>
+            {t("footer.and")}
+            <span className="text-text-accent font-medium">Tailwind CSS</span>
+          </p>
+
+          <button
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-background text-foreground hover:bg-primary hover:text-white transition-colors shrink-0"
+          >
+            <BackToTopIcon />
+          </button>
         </div>
-        <p className="text-gray-400 text-sm">Copyright © {year} All rights reserved</p>
       </div>
     </footer>
   );
