@@ -116,7 +116,7 @@ function PhoneIcon() {
                 {t("hero.description")}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <a
                   href="/CV_DJIELA_FOMO_AYUK_PARFAIT.pdf"
                   target="_blank"
@@ -134,10 +134,10 @@ function PhoneIcon() {
                   {t("hero.hireMe")}
                   <ArrowRightIcon />
                 </a>
-              </div>
+              </div> */}
 
               {/* experience mobile view */}
-<div className="space-y-5 lg:hidden">
+<div className="space-y-5 lg:hidden mb-8">
   {/* Years of experience */}
   <p className="text-sm text-foreground/50 text-center lg:text-left">
     {t("hero.experience")}
@@ -156,6 +156,25 @@ function PhoneIcon() {
     ))}
   </div>
 </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start ">
+                <a
+                  href="/CV_DJIELA_FOMO_AYUK_PARFAIT.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className={`${primaryBtn} shadow-xl shadow-primary/20 inline-flex items-center justify-center`}
+                >
+                  {t("hero.resume")}
+                  <DownloadIcon />
+                </a>
+                <a
+                  href="#contact"
+                  className={`${outlineBtn} inline-flex items-center justify-center cursor-pointer`}
+                >
+                  {t("hero.hireMe")}
+                  <ArrowRightIcon />
+                </a>
+              </div>
             </motion.div>
 
              {/* Image + Experience + Tech Stack */}
@@ -205,24 +224,65 @@ function PhoneIcon() {
         </div>
       </section>
 
+      {/* ─── Services Marquee ─── */}
+      <section className="relative py-6 bg-background-accent border-y border-white/5 overflow-hidden">
+        <div className="marquee-track flex whitespace-nowrap">
+          {/* Render the list twice back-to-back so the loop is seamless */}
+          {[0, 1].map((repeat) => (
+            <div key={repeat} className="flex items-center shrink-0" aria-hidden={repeat === 1}>
+              {[
+                t("about.skill1"),
+                t("about.skill2"),
+                t("about.skill3"),
+                t("about.skill4"),
+              ].map((service, i) => (
+                <span key={`${service}-${i}`} className="flex items-center text-xl font-bold mx-4">
+                  <span className="text-text-accent mx-2">✦</span>
+                  <span className="text-foreground">{service}</span>
+                  <span className="text-text-accent mx-2">✦</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <style jsx>{`
+          .marquee-track {
+            width: max-content;
+            animation: marquee 22s linear infinite;
+          }
+          .marquee-track:hover {
+            animation-play-state: paused;
+          }
+          @keyframes marquee {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
+      </section>
+
       {/* ─── About Section ─── */}
-      <section id="about" className="py-20 bg-background-accent relative overflow-hidden">
+      <section id="about" className="py-20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-0 items-center"
           >
-            <div className="order-1 md:order-1 space-y-8 flex flex-col">
-              <div className="justify-start">
+            <div className="order-1 md:order-1 space-y-8 mb-4 md:mb-0">
+              <div className="">
                 {/* Sub-title */}
-              <span className="inline-block text-text-secondary font-medium mb-3">
+              <span className="inline-block text-text-secondary font-medium mb-5 md:mb-3">
                 {t("about.subtitle")}
               </span>
               </div>
-              <div className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-tr from-secondary to-primary rounded-2xl rotate-3 opacity-90 shadow-2xl">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-tr from-primary to-secondary rounded-2xl rotate-3 opacity-90 shadow-2xl">
                 <div className="absolute inset-0 bg-white rounded-2xl -rotate-6 transform translate-x-2 translate-y-2 border border-gray-100 flex items-center justify-center p-8 text-center shadow-inner">
                   <span className="text-6xl">🚀</span>
                 </div>
@@ -270,8 +330,78 @@ function PhoneIcon() {
         </div>
       </section>
 
+      {/* ─── Services Section ─── */}
+      <section id="services" className="py-24 bg-background-accent relative overflow-hidden">
+        {/* Grid background */}
+       <div
+         className="absolute inset-0 z-0 opacity-[0.07]"
+         style={{
+          backgroundImage: `
+           linear-gradient(to right, #ffffff 1px, transparent 1px),
+           linear-gradient(to bottom, #ffffff 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+         }}
+       />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto text-center mb-16"
+          >
+            <span className="inline-block text-text-secondary font-medium mb-3">
+              {t("services.subtitle")}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black leading-tight">
+              {t("services.title")}{" "}
+              <span className="text-text-secondary">{t("services.titleHighlight")}</span>{" "}
+              {t("services.titleEnd")}
+            </h2>
+          </motion.div>
+
+          {/* Service items grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2">
+            {[
+              { number: "01.", title: t("services.item1Title"), desc: t("services.item1Desc") },
+              { number: "02.", title: t("services.item2Title"), desc: t("services.item2Desc") },
+              { number: "03.", title: t("services.item3Title"), desc: t("services.item3Desc") },
+              { number: "04.", title: t("services.item4Title"), desc: t("services.item4Desc") },
+            ].map((service, index) => (
+              <motion.div
+                key={service.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index % 2) * 0.1 }}
+                className="group flex items-center gap-6 border-t border-white/10 py-8"
+              >
+                <span className="text-2xl font-black text-text-secondary shrink-0">
+                  {service.number}
+                </span>
+
+                <div className="flex-1">
+                  <h4 className="text-xl font-bold text-foreground mb-1">{service.title}</h4>
+                  <p className="text-foreground/50 text-sm">{service.desc}</p>
+                </div>
+
+                <a
+                  href="#contact"
+                  aria-label={`Enquire about ${service.title}`}
+                  className="w-11 h-11 flex items-center justify-center rounded-full bg-background-accent text-foreground shrink-0 group-hover:bg-primary group-hover:text-white transition-colors"
+                >
+                  <ArrowRightIcon />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── Works Section ─── */}
-      <section id="works" className="py-20 bg-gray-50 dark:bg-black/20 transition-colors duration-300">
+      <section id="works" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black mb-4">{t("works.title")}</h2>
