@@ -54,11 +54,35 @@ function ArrowRightIcon() {
   );
 }
 
+function CheckIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 text-text-accent shrink-0 text-text-secondary">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a1.5 1.5 0 0 0 1.5-1.5v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5a2.25 2.25 0 0 0-2.25 2.25v1.25Z" />
+    </svg>
+  );
+}
+
   return (
     <main className="w-full">
       
       {/* ─── Hero Section ─── */}
-      <section className="relative min-h-[90vh] flex items-center pt-32 pb-16 overflow-hidden">
+      <section id="home" className="relative xl:min-h-[90vh] flex items-center pt-32 pb-16 overflow-hidden">
         {/* Grid background */}
        <div
          className="absolute inset-0 z-0 opacity-[0.07]"
@@ -182,7 +206,7 @@ function ArrowRightIcon() {
       </section>
 
       {/* ─── About Section ─── */}
-      <section id="about" className="py-20 bg-white dark:bg-dark relative overflow-hidden">
+      <section id="about" className="py-20 bg-background-accent relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -191,26 +215,56 @@ function ArrowRightIcon() {
             transition={{ duration: 0.6 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
           >
-            <div className="order-2 md:order-1">
-              <h2 className="text-3xl md:text-4xl font-black mb-6 flex items-center gap-3">
-                <span className="w-12 h-1 bg-primary rounded-full" />
-                {t("about.title")}
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                {t("about.desc1")}
-              </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                {t("about.desc2")}
-              </p>
-              <button className={primaryBtn}>{t("about.cta")}</button>
-            </div>
-
-            <div className="order-1 md:order-2 flex justify-center">
+            <div className="order-1 md:order-1 space-y-8 flex flex-col">
+              <div className="justify-start">
+                {/* Sub-title */}
+              <span className="inline-block text-text-secondary font-medium mb-3">
+                {t("about.subtitle")}
+              </span>
+              </div>
               <div className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-tr from-secondary to-primary rounded-2xl rotate-3 opacity-90 shadow-2xl">
-                <div className="absolute inset-0 bg-white dark:bg-gray-800 rounded-2xl -rotate-6 transform translate-x-2 translate-y-2 border border-gray-100 dark:border-gray-700 flex items-center justify-center p-8 text-center shadow-inner">
+                <div className="absolute inset-0 bg-white rounded-2xl -rotate-6 transform translate-x-2 translate-y-2 border border-gray-100 flex items-center justify-center p-8 text-center shadow-inner">
                   <span className="text-6xl">🚀</span>
                 </div>
               </div>
+            </div>
+
+            <div className="order-2 md:order-2">
+
+              {/* Heading */}
+              <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">
+                {t("about.title")}{" "}
+                <span className="text-text-secondary">{t("about.titleHighlight")}</span>{" "}
+                {t("about.titleEnd")}
+              </h2>
+
+              {/* Description */}
+              <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
+                {t("about.desc1")}
+              </p>
+
+              {/* Skills list, two columns */}
+              <ul className="grid grid-cols-2 gap-y-3 gap-x-6 mb-10">
+                {[
+                  t("about.skill1"),
+                  t("about.skill2"),
+                  t("about.skill3"),
+                  t("about.skill4"),
+                ].map((skill) => (
+                  <li key={skill} className="flex items-center gap-2 text-foreground">
+                    <CheckIcon />
+                    <span>{skill}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                  href="#"
+                  className={`${primaryBtn} shadow-xl shadow-primary/20 inline-flex items-center justify-center`}
+                >
+                  {t("about.cta")}
+                  <ArrowRightIcon />
+                </a>
             </div>
           </motion.div>
         </div>
