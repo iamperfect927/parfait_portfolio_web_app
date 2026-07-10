@@ -348,13 +348,6 @@ function Footer() {
             © {year} Parfait.dev — {t("footer.rights")}
           </p>
 
-          {/* <button
-            onClick={scrollToTop}
-            aria-label="Back to top"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-background text-foreground hover:bg-primary hover:text-white transition-colors shrink-0"
-          >
-            <BackToTopIcon />
-          </button> */}
         </div>
       </div>
     </footer>

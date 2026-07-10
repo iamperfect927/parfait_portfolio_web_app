@@ -141,7 +141,7 @@ export default function Home() {
   // Button styles
   const baseBtn = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold text-sm md:text-base transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer";
   const primaryBtn = `${baseBtn} bg-secondary text-white shadow-lg hover:shadow-secondary/40 hover:bg-secondary-hover`;
-  const outlineBtn = `${baseBtn} border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-primary`;
+  const outlineBtn = `${baseBtn} border-2 border-primary text-primary hover:bg-primary hover:text-white `;
 
   function DownloadIcon() {
     return (
@@ -245,25 +245,7 @@ export default function Home() {
                 {t("hero.description")}
               </p>
 
-              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-                <a
-                  href="/CV_DJIELA_FOMO_AYUK_PARFAIT.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  className={`${primaryBtn} shadow-xl shadow-primary/20 inline-flex items-center justify-center`}
-                >
-                  {t("hero.resume")}
-                  <DownloadIcon />
-                </a>
-                <a
-                  href="#contact"
-                  className={`${outlineBtn} inline-flex items-center justify-center cursor-pointer`}
-                >
-                  {t("hero.hireMe")}
-                  <ArrowRightIcon />
-                </a>
-              </div> */}
+
 
               {/* experience mobile view */}
               <div className="space-y-5 lg:hidden mb-8">
@@ -296,13 +278,13 @@ export default function Home() {
                   {t("hero.resume")}
                   <DownloadIcon />
                 </a>
-                <a
+                <Link
                   href="#contact"
                   className={`${outlineBtn} inline-flex items-center justify-center cursor-pointer`}
                 >
                   {t("hero.hireMe")}
                   <ArrowRightIcon />
-                </a>
+                </Link>
               </div>
             </motion.div>
 
@@ -365,7 +347,7 @@ export default function Home() {
                 t("about.skill3"),
                 t("about.skill4"),
               ].map((service, i) => (
-                <span key={`${service}-${i}`} className="flex items-center text-md md:text-lg font-bold mx-4">
+                <span key={`${service}-${i}`} className="flex items-center text-md font-bold mx-4">
                   <span className="text-text-accent mx-2">✦</span>
                   <span className="text-foreground">{service}</span>
                   <span className="text-text-accent mx-2">✦</span>
@@ -492,7 +474,7 @@ export default function Home() {
           </motion.div>
 
           {/* Service items grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-y-2">
             {[
               { number: "01.", title: t("services.item1Title"), desc: t("services.item1Desc") },
               { number: "02.", title: t("services.item2Title"), desc: t("services.item2Desc") },
@@ -575,7 +557,7 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="group bg-foreground/20 rounded-2xl overflow-hidden p-3 md:p-4"
+                  className="group bg-primary/20 rounded-2xl overflow-hidden p-3 md:p-4"
                 >
                   <Link href={`/works/${project.id}`} className="block">
                     <div className="relative h-64 w-full overflow-hidden rounded-xl">
@@ -593,7 +575,7 @@ export default function Home() {
                         <h3 className="font-semibold text-text-foreground truncate">{project.title}</h3>
                         <p className="text-sm text-text-foreground/40 truncate">{project.description}</p>
                       </div>
-                      <span className="w-11 h-11 flex items-center justify-center rounded-full bg-gray-100 text-gray-900 shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                      <span className="w-11 h-11 flex items-center px-2 rounded-full bg-gray-100 text-gray-900 shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                         <ArrowRightIcon />
                       </span>
                     </div>
