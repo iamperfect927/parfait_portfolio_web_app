@@ -123,14 +123,14 @@ const testimonials = [
 // Primary landing page component displaying the home hero banner, about bio, services, projects grid, tools marquee, client testimonials, and contact form.
 export default function Home() {
   const { t } = useLanguage();
-  
+
   // Filter state to categorize projects (e.g. all, personal, client, school)
   const [filter, setFilter] = useState("all");
   // Controls whether all projects are shown or just the first 4
   const [showAll, setShowAll] = useState(false);
 
   const categories = ["all", "personal", "client", "school"];
-  
+
   // Filters projects based on the active selection state, then limits to 4 unless expanded
   const allFiltered = filter === "all" ? projectsData : projectsData.filter((p) => p.category === filter);
   const filtered = showAll ? allFiltered : allFiltered.slice(0, 4);
@@ -163,7 +163,7 @@ export default function Home() {
   // Navigates to the next testimonial card (wrapping around)
   const nextTestimonial = () =>
     scrollToIndex((activeTestimonial + 1) % testimonials.length);
-    
+
   // Navigates to the previous testimonial card (wrapping around)
   const prevTestimonial = () =>
     scrollToIndex((activeTestimonial - 1 + testimonials.length) % testimonials.length);
@@ -700,22 +700,7 @@ export default function Home() {
               </h2>
               <p className="text-foreground/60 mb-10">{t("testimonials.desc")}</p>
 
-              <div className="hidden lg:flex gap-3">
-                <button
-                  onClick={prevTestimonial}
-                  aria-label="Previous testimonial"
-                  className="w-12 h-12 flex items-center justify-center rounded-full bg-background text-foreground hover:bg-primary hover:text-white transition-colors"
-                >
-                  <ArrowLeftIcon />
-                </button>
-                <button
-                  onClick={nextTestimonial}
-                  aria-label="Next testimonial"
-                  className="w-12 h-12 flex items-center justify-center rounded-full bg-background text-foreground hover:bg-primary hover:text-white transition-colors"
-                >
-                  <ArrowRightIcon />
-                </button>
-              </div>
+
             </div>
 
             {/* Right: testimonial slider */}
