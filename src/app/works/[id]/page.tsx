@@ -6,21 +6,24 @@ import Link from "next/link";
 import { projectsData } from "@/data/projects";
 import { notFound } from "next/navigation";
 
+// Dynamic details page showing descriptive data, tag categories, and custom mockups for a specific project.
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
+    // Unwraps dynamic route parameter Promise via React 'use()' hook
     const { id } = use(params);
     const project = projectsData.find((p) => p.id === id);
 
+    // Redirects to standard 404 page if no matching ID is found in projects database
     if (!project) {
         notFound();
     }
 
-    // Button styles
+    // Interactive button class systems
     const baseBtn = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold text-sm md:text-base transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer";
     const primaryBtn = `${baseBtn} bg-primary text-white shadow-lg hover:shadow-primary/40 hover:bg-primary-hover`;
-    const outlineBtn = `${baseBtn} border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-primary`;
+    const outlineBtn = `${baseBtn} border-2 border-primary text-primary hover:bg-primary hover:text-white`;
 
     return (
-        <main className="bg-white dark:bg-dark min-h-screen transition-colors duration-300">
+        <main className="bg-background min-h-screen transition-colors duration-300">
             {/* Hero Header */}
             <div className="relative h-[60vh] w-full pt-20">
                 <Image
@@ -47,13 +50,13 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
 
                 {/* Overview Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
-                    {/* Left: Content */}
+                    {/* Left Panel: Overview texts, challenges resolved, and feature listings */}
                     <div className="lg:col-span-2 space-y-12">
                         <section>
                             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-foreground">
                                 Project Overview
                             </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                            <p className="text-lg text-foreground/70 leading-relaxed">
                                 {project.longDescription || project.description}
                             </p>
                         </section>
@@ -63,8 +66,8 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-foreground">
                                     Challenges & Solutions
                                 </h2>
-                                <div className="bg-gray-50 dark:bg-gray-900 border-l-4 border-accent p-6 rounded-r-xl">
-                                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed italic">
+                                <div className="bg-background-accent border-l-4 border-primary p-6 rounded-r-xl">
+                                    <p className="text-lg text-foreground/70 leading-relaxed italic">
                                         "{project.challenges}"
                                     </p>
                                 </div>
@@ -80,7 +83,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                                     {project.features.map((feature, idx) => (
                                         <li key={idx} className="flex items-start gap-3">
                                             <span className="mt-1 text-primary">✓</span>
-                                            <span className="text-gray-700 dark:text-gray-300 font-medium">{feature}</span>
+                                            <span className="text-foreground/80 font-medium">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -88,28 +91,28 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                         )}
                     </div>
 
-                    {/* Right: Sidebar Stats */}
+                    {/* Right Panel: Metadata widgets (Status, tech tags, action links) */}
                     <div className="space-y-8">
-                        <div className="bg-gray-50 dark:bg-gray-900 p-8 rounded-2xl border border-gray-100 dark:border-gray-800 sticky top-24">
-                            <h3 className="text-lg font-bold mb-6 text-foreground uppercase tracking-widest border-b border-gray-200 dark:border-gray-700 pb-2">Project Info</h3>
+                        <div className="bg-background-accent p-8 rounded-2xl border border-white/10 sticky top-24">
+                            <h3 className="text-lg font-bold mb-6 text-foreground uppercase tracking-widest border-b border-white/10 pb-2">Project Info</h3>
 
                             <div className="space-y-6">
                                 <div>
-                                    <span className="block text-sm text-gray-500 mb-1">Status</span>
+                                    <span className="block text-sm text-foreground/45 mb-1">Status</span>
                                     <span className="text-lg font-bold text-foreground capitalize">{project.status}</span>
                                 </div>
                                 <div>
-                                    <span className="block text-sm text-gray-500 mb-1">Technologies</span>
+                                    <span className="block text-sm text-foreground/45 mb-1">Technologies</span>
                                     <div className="flex flex-wrap gap-2 mt-2">
                                         {project.tags.map(tag => (
-                                            <span key={tag} className="text-xs font-bold px-3 py-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-foreground">
+                                            <span key={tag} className="text-xs font-bold px-3 py-1 bg-background border border-white/10 rounded-full text-foreground">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
                                 <div>
-                                    <span className="block text-sm text-gray-500 mb-1">Links</span>
+                                    <span className="block text-sm text-foreground/45 mb-1">Links</span>
                                     <div className="flex flex-col gap-3 mt-2">
                                         <Link href="#" className={`${primaryBtn} w-full justify-center`}>Visit Live Site</Link>
 
@@ -140,8 +143,8 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 )}
 
 
-                {/* Nav */}
-                <div className="flex justify-between border-t border-gray-200 dark:border-gray-800 pt-12">
+                {/* Back navigation footer link */}
+                <div className="flex justify-between border-t border-white/10 pt-12">
                     <Link href="/#works" className="text-primary font-bold hover:underline flex items-center gap-2">
                         &larr; Back to Works
                     </Link>

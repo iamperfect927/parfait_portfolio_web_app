@@ -1,0 +1,292 @@
+project 1: {
+       # Alleviate Organic Ltd.
+
+A high-performance, conversion-optimized, and beautifully designed Next.js web application for **Alleviate Organic**, a premium wellness brand presenting 100% pure, single-ingredient African herbal powders ethically wild-harvested from the rich, volcanic soils of **Buea, Southwest Region, Cameroon**.
+
+This digital storefront introduces an immersive, premium lookbook-style editorial flow targeting specific conditions (Piles/Hemorrhoids and Menstrual Cramp Spasms) with zero additives, zero concoctions, and absolute clinical purity.
+
+---
+
+## 🍃 Brand Mission & Sourcing Integrity
+
+Unlike complex multi-herb commercial capsule formulations that rely on synthetic excipients, binders, or artificial fillers, **Alleviate Organic** stands for absolute botanical transparency:
+* **Mount Fako Volcanic Origin**: All raw plant powders are ethically sourced and wild-harvested directly from the mineral-dense volcanic soils surrounding Mount Fako (Mount Cameroon) and Southwest Cameroon's active volcanic fertile zones.
+* **Cold Stone-Ground Hand Processing**: Harvested roots and rhizomes are washed with pure mountain spring water, sun-dehydrated at low temperatures (below 40°C), and stone-ground by hand to fully preserve fragile volatile organic oils and therapeutic alkaloids.
+* **100% Single-Ingredient Guarantee**: Absolutely zero fillers, blending agents, flow chemicals (such as silicon dioxide or magnesium stearate), or synthetic concoctions.
+
+---
+
+## 🎨 Professional UI/UX & Conversion Design System
+
+Built under a premium editorial aesthetic designed to inspire clinical trust and maximize landing-page conversion rates:
+* **Glassmorphic Sticky Navigation**: A compact global navbar (`sticky top-0 z-50`) with rich backdrop-blur filters (`backdrop-blur-md`) and responsive padding that rolls seamlessly over body text.
+* **Interactive Hover Links**: Dynamic header links utilizing elegant vector underline transitions:
+  ```css
+  after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left
+  ```
+* **Alternating Section Rhythm**: Guided scroll sequence designed to keep visual momentum alive without layout monotony:
+  1. **Hero Header** (`bg-brand-bgLight`) — Left-aligned 12-column grid displaying the primary targeted value proposition.
+  2. **Purity Manifesto Grid** (`bg-white`) — Alternating soft light cards (`bg-brand-bgLight`) highlighting single-ingredient stone-ground processing.
+  3. **Apothecary Product Grid** (`bg-brand-bgLight`) — A beautiful, interactive, filter-driven grid showcasing available powders, prices, and target ailments.
+  4. **Parallax Trust Banner** (`bg-fixed emerald overlay`) — High-contrast full-bleed panoramic Scientific Purity Promise.
+  5. **Verified Testimonials Grid** (`bg-white`) — Social proof grid showcasing customer outcomes.
+  6. **Physical HQ Contact Split** (`bg-brand-bgLight`) — Split block displaying a stateful contact form and corporate details.
+* **Premium Micro-Animations**: Features smooth staggered landing-page transitions (`animate-fade-in-up`, `animate-fade-in-scale`, `animate-glow-expand`) and card elevations (`hover:shadow-xl hover:-translate-y-1`) that make the layout feel alive.
+* **Mobile-First Responsiveness**: Stretches action buttons to finger-accessible touchscreen sizes (`w-full md:w-auto h-12`) and dynamically scales vertical gutters down to `py-12` on smartphones.
+* **Vector Apothecary Favicon**: Renders a crisp vector brand icon directly from `src/app/icon.svg` featuring deep emerald layers and soft amber leaf waves.
+
+---
+
+## 🇨🇲 Localized Central African Market Integration
+
+The storefront is fully customized to reflect its official headquarters in **Buea, Southwest Region, Cameroon**:
+* **Corporate Coordinates**: Updated physical office layouts, electronic mail addresses, support operations (08:00 - 17:00 WAT), Cameroon public holiday rules, and support hotlines to **`+237 657447445`**.
+* **Central African CFA Franc (FCFA/XAF)**: Standardized pricing variables to **FCFA** instead of USD across all page models, checkout calculations, and order receipts.
+* **Tax & Shipping Rounding**: Established flat-rate local shipping at **`2,500 FCFA`** and integrated whole-integer rounding (`Math.round`) for the `5%` local VAT calculations, aligning with Central African currency subdivisions.
+* **Direct WhatsApp Payments**: Integrates a client-side floating support button and a checkout manual dispatch fallback that auto-launches chats with **`+237 657447445`**, pre-filling complete order invoices (Order ID, products, totals) for manual bank transfer or mobile money resolution.
+* **Volcanic Zone Compliance Disclaimer**: Upgraded footer disclaimers to protect local traditional medicine guidelines, referencing Mount Fako origins and regulatory oversight from the **Cameroonian Ministry of Public Health (MINSANTE)**.
+
+---
+
+## 🛠️ Technological Stack
+
+* **Framework**: Next.js 16.2.6 (App Router Architecture, Static Site Generation)
+* **Language**: TypeScript (Strict typing templates)
+* **Styling**: Tailwind CSS (Tailwind v4 standard variable setups inside `src/app/globals.css`)
+* **Assets**: Inline custom hand-crafted lightweight SVG graphics and optimized lookbook imagery
+
+---
+
+## 🚀 Running the Storefront Locally
+}
+
+project 2: {
+    # Context AI - Project Knowledge Memory
+
+## Project Mission
+SaaS for rapid solar estimation utilizing file ingestion and precision mathematical math runners. The application automates the ingestion of raw site telemetry (Field Study sheets) and warehouse material lists to instantly output flawless pricing models.
+
+## Tech Stack
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS 4
+- ExcelJS
+- AI SDK (@ai-sdk/google, @ai-sdk/react)
+- TypeScript
+
+## Functional Workflows
+File Upload -> UI Ingestion Context -> Agent Tool Mapping Matrix -> Math Engine Execution -> Blob Download Delivery
+
+## Current Implementations & Changelog
+- **Core Dashboard UI**: Fully implemented split-screen view in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx). Left panel features dropzones for Field Study and Material Price List Excel files and an AI Agent Chat Interface. Right panel showcases a live preview of calculated estimate summary metrics with approval states and download button.
+- **AI Chat Endpoint**: Set up in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/chat/route.ts) with `streamText` using Google Gemini, defining the `calculateEstimate` tool which returns a structured estimate including materials, labor, and margin.
+- **Excel Export Endpoint**: Set up in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/download-excel/route.ts) which delegates to `excelGenerator`.
+- **Excel Sheet Generation Engine**: Set up in [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) utilizing `exceljs` to dynamically generate spreadsheet rows with totals for materials and labor.
+- **Build Fixes (Imports & Typos)**: Fixed `z` import from `'zz'` to `'zod'` in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/chat/route.ts), and corrected the import paths in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/download-excel/route.ts) and [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to resolve module loading failures during Next.js build.
+- **AI Chat Tool Schema Typing Fix**: Modified [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/chat/route.ts) to use `inputSchema` with `zodSchema` instead of `parameters` to align with the Vercel AI SDK provider-utils typing constraints and resolve the TypeScript type checker error.
+- **AI Chat Response Method Update**: Updated [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/chat/route.ts) to return `result.toUIMessageStreamResponse()` instead of `result.toDataStreamResponse()` to align with the Vercel AI SDK v6 API changes for streaming responses.
+- **Excel Download NextResponse Body Fix**: Updated [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/download-excel/route.ts) to convert the `Buffer` returned by `excelGenerator` into a standard `Uint8Array` (`new Uint8Array(buffer)`) to satisfy the standard `BodyInit` type requirement of `NextResponse` and fix the TypeScript compilation error.
+- **ExcelJS writeBuffer API Fix**: Modified [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to call the correct ExcelJS method `workbook.xlsx.writeBuffer()` instead of `writeAsBuffer()`.
+- **ExcelJS Promise Type Cast Fix**: Cast the return value of `workbook.xlsx.writeBuffer()` as `unknown as Promise<Buffer>` in [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to resolve TypeScript type overlap mismatch between standard Node.js Buffer and ExcelJS Buffer.
+- **Vercel AI SDK v6 React Hook Migration**: Migrated the `useChat` destructuring in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) to match the v6 core specs. Removed non-existent `input`, `handleInputChange`, and `handleSubmit` return values, replacing them with a local React `useState` field, custom form submit handler, and standard `sendMessage({ text })` method trigger.
+- **UIMessage Type Conformity Fix**: Updated the client message synchronization context in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) to leverage the v6 `parts` text block format instead of the deprecated `content` string, resolving type mismatch errors.
+- **AI Chat Custom Endpoint Route**: Setup the `useChat` initialization parameters in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) to pass a `DefaultChatTransport` object detailing `/api/chat` as the target routing, since the custom `api` parameter was removed from the hook options.
+- **High-Fidelity Slate & Emerald Dashboard Styling**: Completely overhauled the frontend styling in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) to create a premium, gorgeous solar-themed SaaS interface, featuring slate layouts, glowing animated emerald accents, responsive prompt suggestions, drag-and-drop file indicators, and live itemized price calculation data grids.
+- **ExcelJS API numFmt Property Update**: Modified [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to apply the valid `.numFmt` property on sheet cell instances instead of `.numFormat` to comply with standard typing.
+- **ExcelJS Literal Border Styling Casts**: Applied explicit `as const` type assertions on spreadsheet border style literal assignments in [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to adhere strictly to ExcelJS `BorderStyle` union type expectations.
+- **Excel Premium Branding & Layout Enhancements**: Upgraded the report generation template in [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to render a top merged company typographic logo banner, zebra rows, double-underlined emerald green grand totals, and proper cell alignments.
+- **AI SDK v6 Message Format Validation Fix**: Resolved a server-side Zod validation mismatch (`ZodError` checking roles/content) by importing and invoking `convertToModelMessages(messages)` in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/chat/route.ts) to convert frontend `UIMessage[]` structures to backend `CoreMessage[]` structures before passing them to `streamText`.
+- **Model Upgrade to Gemini 2.5 Flash**: Switched the LLM model identifier from `'gemini-1.5-pro'` to `'gemini-2.5-flash'` in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/chat/route.ts) to resolve API `NOT_FOUND` errors since the current API key environment explicitly supports the advanced `'models/gemini-2.5-flash'` family.
+- **Offline Build Font Optimization**: Replaced network-dependent Google Fonts (`next/font/google` in [layout.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/layout.tsx)) with custom local UI font stacks (`Inter`, `Segoe UI`, Roboto) declared via CSS variables in [globals.css](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/globals.css) to eliminate build-time font fetching network requests and fix compilation failures in sandboxed/offline environments.
+- **Solar File Ingestion Parser API**: Created new backend route [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts) that accepts multipart form data (`fieldStudy` + `priceList` Excel workbooks). Phase 1 scans worksheets matching `/^\d{2}_Comsumption_profile$/i`, extracts customer name from cell A1, and parses device load rows (Columns A–H) from row 7 onwards. Phase 2 aggregates building-wide peak load (kW), day consumption (kWh), and night consumption (kWh). Phase 3 cross-references a seed hardware catalog (Huawei/Growatt/Solis inverters, Pylontech/Freedom Won batteries, Jinko/JA Solar panels, DC cables) — optionally overridden by uploaded price list sheets — and selects the best-fit component per category using safety buffer and lithium preference logic. Phase 4 returns structured `materials`, `labor`, `marginPercentage`, `metrics`, and `warnings` in JSON.
+- **Frontend File Ingestion Wiring**: Upgraded `handleAttachFilesToAI` in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) from a static AI text injection to an actual `FormData` POST to `/api/parse-solar-files`. On success, parsed results are fed into `calculationResult` state so the right panel auto-populates instantly. A detailed `[SYSTEM NOTICE]` containing all aggregated metrics (peak kW, kWh, full BOQ, labor breakdown, and grand total in XAF) is injected into the AI chat so the AI agent has full numeric context.
+- **XAF Currency Display on Dashboard**: Updated all price displays in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) from `$` dollar format with `.toFixed(2)` to XAF Central African Franc format using `.toLocaleString()` with the `XAF` suffix throughout the materials table, labor table, subtotals, and grand total.
+- **Solar Metrics Banner (UI)**: Added a three-column metrics row (Peak Load kW / Day kWh / Night kWh) to the right panel of [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) that renders after file ingestion using data from `calculationResult.metrics`. Also updated the BOQ header to display the customer name and apartment count.
+- **XAF Currency in Excel Report**: Updated all cell `numFmt` properties in [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) from `$#,##0.00` to `#,##0" XAF"` throughout materials, labor, subtotals, margins, and grand total cells.
+- **Customer & Metrics Banner in Excel Report**: Updated [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to render the customer name in the subtitle banner row and two additional metric rows (labels + values) showing Peak Load kW, Day/Night kWh, apartment count, and device count — only when ingestion data (`metrics`) is present.
+- **CalculationInput Type Extension**: Extended the `CalculationInput` interface in [estimation.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/types/estimation.ts) with optional `customerName?: string` and `metrics?: { peakKW, dayConsumptionKWh, nightConsumptionKWh, apartmentCount, totalDeviceCount }` fields to support ingestion-derived data flowing through to the Excel generator.
+- **Labor Cost = 30% of Equipment**: Replaced the previous three-line fixed labor schedule (PV framing, wiring, tie-in with hardcoded hours and rates) with a single derived labor entry equal to 30% of the total equipment (materials) subtotal. Change applied in: (1) [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts) — `laborCost = Math.round(materialsSubtotal * 0.30)`, returned as `{ description, hours: 1, hourlyRate: laborCost }`; (2) [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) — labor table row now shows `30% of Equipment` and `Flat Rate` labels instead of hours/rate columns, and SYSTEM NOTICE updated to describe the rule; (3) [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) — labor section header renamed, row renders flat cost (`l.hourlyRate`) directly, qty/rate columns show italic `30% of Equipment` and `—` labels.
+- **Google Drive File Downloader API Proxy**: Created the server-side proxy route [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/fetch-drive-file/route.ts) which securely downloads files from Google Drive using public share links (supports both Google Sheets standard export and raw uploaded `.xlsx` files), bypassing browser CORS block without requiring API keys or OAuth Client IDs.
+- **Glassmorphic Google Drive Import UI**: Integrated high-fidelity interactive "Import from Drive" modals in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) for both the Field Study and Material Price List upload sections. The modals feature ambient glows, custom spinners, error feedback, and instructions. On successful fetch, the downloaded file is automatically converted to an HTML5 `File` object and synchronized into the app's upload state, enabling immediate parser execution.
+- **Parser Syntax & Type Def Casting Fixes**: Fixed a critical syntax typo in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts) (replaced `1. READ FIELD STUDY WORKBOOK` with a valid comment tag) and cast the `ExcelJS` load buffer arguments as `any` to eliminate TypeScript global Node.js `Buffer` type declaration mismatch.
+- **Corporate Logo Embedded in Excel Report**: Generated a premium "Blue Frames Solar" company logo PNG using AI image generation and saved it to `public/solar_logo.png`. Updated [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to embed the image into the header block (cells A1:A2) using `workbook.addImage()` and `sheet.addImage()` with fractional anchor coordinates. The title text "BLUE FRAMES SOLAR ESTIMATE" was moved to merged cells B1:D2 to sit alongside the logo. The `addImage()` position object was cast `as any` to satisfy ExcelJS `Anchor` interface type constraints.
+- **Overhead Margin & Risk Markup Removed**: Removed all overhead margin multipliers from the estimation flow. Grand Total is now computed as the direct sum of Materials + Labor (no percentage markup). Changes applied in: (1) [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) — `grandTotal` formula changed to `materialsSubtotal + laborSubtotal`, "Including X% Markup" label replaced with "Direct Materials & Labor", the Margin Rate KPI card replaced with Peak System Load (kW) metric; (2) [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts) — `marginPercentage` changed from `15` to `0`; (3) [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/chat/route.ts) — `marginPercentage` Zod schema default changed from `15` to `0`.
+- **Dynamic Price List Parsing**: Made the price list upload mandatory for the file ingestion API route [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts) and removed the hardcoded seed hardware catalog arrays of inverters, batteries, panels, and cables. Replaced the basic table mapping with a robust synonym-matching algorithm that supports flexible column headers (e.g. matching `spec` or `specification` for cables) and validates that at least one matching item is parsed for each component category.
+- **Price List Synonym Alignment & Fallback Derivations**: Updated [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts) table parser to support `S/N, type, Power rating, Brand, Price` layout by aliasing the `type` column header to both `model` and `spec` fields, and the `Power rating` header to `powerKW`/`powerKWh`/`powerW` properties. Integrated safety fallback derivations to automatically compute missing spreadsheet metrics from the power ratings (e.g., deriving inverter `amperageA` as `powerKW * 5`, panel `efficiencyPercent` as `15 + (powerW / 100)`, and cable `maxAmperage` from wire cross-section regex parsing).- **Price List Parser Robustness & Row Sentinel Scanning**: Overhauled the dynamic parser in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts) to utilize the workbook's `sheet.rowCount` and scan all sheet rows. Modified row-end detection to use column 1 (S/N) as the sentinel and tolerate empty data rows rather than immediately breaking, breaking only when two consecutive blank rows are encountered.
+- **Empty Category Graceful Fallbacks**: Removed the strict 400 validation failures when inverter, battery, panel, or cable lists are parsed as empty from the spreadsheet catalog. The parser now inserts a `—` dash-placeholder item for any empty category in [route.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/api/parse-solar-files/route.ts), allowing the estimation flow to proceed successfully and display missing materials cleanly.
+- **Interactive Help Modal Panel**: Implemented a responsive Help modal in [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) triggered by a clean rounded help button in the header. The modal displays detailed information about file format specifications (Field Study sheet prefixes, column configurations, price list tab names) and documents the detailed mathematical formulas executed for solar load sizing, battery buffering, panel array footprint, cable sizing, and the 30% flat labor cost multiplier.
+- **Two-Sheet Excel Generation (Summary & Estimate)**: Overhauled [excelGenerator.ts](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/libs/excelGenerator.ts) to produce a workbook with two separate worksheets. The first sheet, `Summary`, presents a beautiful, formatted tabular breakdown of all parsed individual apartments/load profiles (individual device count, peak load in kW, and day/night consumption in kWh). The second sheet, `Estimate`, contains the same robust BOQ pricing, specifications, and labor subtotal structure.
+- **Full Responsive Layout Across All Screen Sizes**: Made [page.tsx](file:///c:/Users/PARFAIT/Desktop/quick-estimator/src/app/page.tsx) fully responsive. Root container switches from `flex-col` on mobile to `flex-row` on `lg+`. Left panel is full-width + `max-h-[60vh]` on mobile (capped so the right panel is visible) and `w-[55%]` on desktop. Right panel is full-width on mobile and `w-[45%]` on desktop. Upload drop-zones grid collapses to 1-column on `xs` and widens to 2-columns on `sm+`. Help modal is centered on mobile and anchored top-right on `sm+`. Grand total number uses `break-all` + `flex-wrap` to prevent overflow on narrow screens. Empty-state workflow steps bar uses `flex-wrap + gap` to prevent overflow. All padding is responsive (`p-4` mobile / `p-6` sm+). AI chat messages section and pinned chat input were restored to the left panel (they had been accidentally removed), with quick-action suggestion pills displayed when no messages exist yet.
+
+
+}
+
+project 3: {
+    # Project Context & Progress Tracking
+
+## Goal
+Build an automated Twitter (X) bot that posts trending open-source tools/repositories.
+- Daily output target: 10 tweets/threads (5 Spotlight tweets + 5 Listicle threads/tweets).
+- Uses Google Gemini API (`gemini-2.5-pro` model) for repository analysis and summary generation.
+- Uses `twitter-api-v2` for posting to X.
+- Serverless deployment via GitHub Actions cron, using git commits back to the repo to persist the `tweeted.json` state.
+
+## Project Structure
+- `C:\Users\PARFAIT\Desktop\trending-tech-bot`
+  - `src/`
+    - `index.ts` - Main orchestration and daily scheduling logic
+    - `github.ts` - Data ingestion from GitHub (Search API + Web scraping)
+    - `llm.ts` - Summary generation using Gemini 2.5 Pro
+    - `twitter.ts` - Client to post tweets and threads
+    - `verify.ts` - Programmatic verification tests for character limits and formats
+  - `package.json` - Dependency configuration (ESM `"type": "module"`)
+  - `tsconfig.json` - TypeScript settings
+  - `tweeted.json` - Local state file keeping track of already posted repositories
+  - `.github/workflows/tweet-trends.yml` - Automation cron job (runs every 2 hours)
+
+## Progress Log
+
+### 2026-06-02
+- Created project folder on User's Desktop.
+- Initialized configuration files (`package.json`, `tsconfig.json`, `.env.example`).
+- Implemented `src/github.ts` to query Search API and fallback to scraping HTML.
+- Implemented `src/llm.ts` to utilize Google Gemini 2.5 Pro for summary generation with resilient mock fallback.
+- Implemented `src/twitter.ts` to support single tweets, replies, and multi-tweet threads using `twitter-api-v2`.
+- Implemented `src/index.ts` with round-robin quota caps (5 spotlights and 5 listicles daily), and a staggered execution schedule.
+- Set up GitHub Actions workflow in `.github/workflows/tweet-trends.yml` to run every 2 hours and commit state back.
+- Fixed TS1470 build issue by adding `"type": "module"` to `package.json`.
+- Ran full verification check via dry-run (`npx tsx src/index.ts --dry-run --all`), successfully fetching 61 candidate repositories and generating 5 Spotlights and 5 Listicles with 0 compile/runtime errors.
+- Created programmatic verification script `src/verify.ts` to assert that fallback and generated templates strictly respect the 280-character Twitter constraint on edge-case inputs.
+- Tweaked LLM fallback template sizes and description truncation thresholds (`maxDescLen = 70`) to guarantee character safety.
+- Ran `npm run verify` successfully confirming all character limits and layouts pass boundary tests.
+
+### 2026-06-12
+- Fixed undefined `setError` error in `src/app/dashboard/page.tsx` by declaring `error` and `setError` states.
+- Enhanced Dashboard authentication: checked `sessionStorage` on mount to persist authentication, wrapped login fields in a form for Enter key submission, and added premium glassmorphic dark mode styling.
+- Repaired truncated `components/PostCard.tsx` file: implemented custom component rendering X-style thread timeline, linked repository list, active statuses, and "Post to X" / "Reject" button events.
+- Added server support for updating post content and statuses via a new POST handler in `src/app/api/posts/route.ts` and general `updatePost` function in `lib/storage.ts`.
+- Fixed TypeScript compiler warning in `lib/github.ts` by adding the missing `forks?: number` property to `RepoInfo` interface.
+- Resolved ESM compatibility issues in `scripts/generate.ts` by replacing `require.main === module` with an ESM-compliant direct execution check using `import.meta.url`.
+- Created `src/app/page.tsx` to serve the dashboard layout at the index route (`/`) to resolve the landing page Not Found compiler issue.
+- Overhauled login screen, dashboard page, post composing editors, and X-style thread timeline cards with premium responsive styling (glowing gradients, progress bars, active validations, and visual timelines).
+- Redesigned the entire dashboard workspace (`src/app/page.tsx` and `components/PostCard.tsx`) to match the mockup: sidebar layout, top search box, royal blue "Generate New" action button, custom avatar + logout alignment, and card detail formatting (title on top, description block, bottom row split into left metadata and right action buttons).
+- Added manual "Discover Breakouts" action triggers in the dashboard to dynamically scan GitHub and curate new breakout posts when the queue is empty.
+- Successfully verified build output readiness.
+
+
+
+}
+
+project 4: {
+    # Smart Analyzer Engine - AI Context Modification Log
+
+This file records all technical architectural modifications, routing updates, design tokens, and compliance features implemented for the Google Workspace Marketplace manual review.
+
+## Date of Modification: July 2026
+
+---
+
+## 1. Global Styling & Design Tokens
+*   **File Modified**: [src/app/globals.css](file:///c:/Users/PARFAIT/Desktop/gmail-analyzer-add-on/src/app/globals.css)
+*   **Theme Integration**: Configured Tailwind CSS v4 variables mapping:
+    *   Deep Obsidian Black background (`#0B0B0F`)
+    *   Primary Accent: Neon Indigo to Violet Gradient (`#6366F1` to `#8B5CF6`)
+    *   Text: Pure White (`#FFFFFF`) for headers, Slate Gray (`#94A3B8`) for body text
+    *   Borders: Glass Border (`rgba(255, 255, 255, 0.08)`) and panel border (`rgba(255, 255, 255, 0.04)`)
+*   **Aesthetics**:
+    *   Eliminated standard smooth scrolling (`scroll-behavior: auto !important`).
+    *   Set text selection highlights to Neon Indigo background and Pure White text.
+    *   Added custom dark scrollbar styles.
+    *   Created `glass-panel` and `glass-panel-hover` classes supporting backdrop blur (`blur(12px)`) and subtle glow shadows.
+    *   Implemented glow overlays (`glow-spot-1`, `glow-spot-2`) for background depth.
+
+---
+
+## 2. Layout Structure & App Shell
+*   **File Modified**: [src/app/layout.tsx](file:///c:/Users/PARFAIT/Desktop/gmail-analyzer-add-on/src/app/layout.tsx)
+*   **Modifications**:
+    *   Imported `Link` from `next/link`.
+    *   Configured production-ready metadata titles and descriptions highlighting Gemini B2B SaaS automation.
+    *   Built a sticky glass header bar with live status indicators (`SYS: OPERATIONAL`, `NET_LATENCY: 85MS`, `CORE_V: 2.4.0`) and violet pulsing indicators.
+    *   Added the background glow spots to wrap all page routes.
+    *   Built a global footer container with links targeting Index, `/privacy`, `/terms`, and `/support`.
+
+---
+
+## 3. Main Landing Page
+*   **File Modified**: [src/app/page.tsx](file:///c:/Users/PARFAIT/Desktop/gmail-analyzer-add-on/src/app/page.tsx)
+*   **Modifications**:
+    *   **Hero Glass Card**: Responsive grid presenting the Gemini AI automation engine with a simulated live diagnostic console showing incoming Gmail categorization results.
+    *   **Specs Matrix**: 3-column rounded glass card grid mapping infrastructure features:
+        1.  `01_CRON`: 10-minute automated worker execution triggers.
+        2.  `02_AUTH`: Dual-layer Google Sheets row validations and contract calendar checks.
+        3.  `03_SEC`: In-memory live Gemini API data routing with zero persistent storage/retention.
+    *   **CTA Box**: Glowing glassmorphic container with neon violet gradient installation gate trigger button.
+
+---
+
+## 4. Privacy Policy Compliance
+*   **File Modified**: [src/app/privacy/page.tsx](file:///c:/Users/PARFAIT/Desktop/gmail-analyzer-add-on/src/app/privacy/page.tsx)
+*   **Modifications**:
+    *   Updated container styling and text headers to use glass cards and neon indigo indices (`[ 1.0 ]`, etc.).
+    *   Detailed compliance with the Google API Services User Data Policy.
+    *   Detailed the memory-only Gemini API data pipeline (`generativelanguage.googleapis.com`) with zero disk caching, zero disk persistence, and zero model training parameters.
+
+---
+
+## 5. Terms of Service Compliance
+*   **File Modified**: [src/app/terms/page.tsx](file:///c:/Users/PARFAIT/Desktop/gmail-analyzer-add-on/src/app/terms/page.tsx)
+*   **Modifications**:
+    *   Updated container styling to match the Glassmorphism theme.
+    *   Defined seat license subscription allocation parameters (authorized admin grants).
+    *   Described automatic seat status verification and spreadsheet expiry calendar mathematics.
+    *   Provided standard "as-is" software warranty disclaimers for B2B contracts.
+
+---
+
+## 6. Support Ticketing Interface
+*   **File Modified**: [src/app/support/page.tsx](file:///c:/Users/PARFAIT/Desktop/gmail-analyzer-add-on/src/app/support/page.tsx)
+*   **Modifications**:
+    *   Implemented a `"use client"` interactive contact deck form styled with glass panels.
+    *   **Email Input & Textarea**: Restyled with modern rounded glass borders, dark transparent background, and indigo focus glows.
+    *   **Validation**: Enforces trimmed inputs, email structure, corporate domains (blocking free emails like Gmail, Yahoo, etc.), and description character thresholds.
+    *   **Alert & Success Boxes**: Created rounded glass warning panels and emerald-colored success transaction containers showing mock processing logs.
+
+}
+
+project 5: {
+    # AxeSafe Refactor Development Log
+
+Refactored the speed-tracker workspace into an industrial-grade, B2B SaaS B2B fleet management telemetry platform called **AxeSafe** tailored for Cameroonian highways and logistics operators.
+
+## System-wide Updates
+
+1. **Design System & Aesthetics**:
+   - Switched Google Fonts from Inter/Outfit to `Mulish` (structure/headings) and `Space Mono` (dynamic telemetry values, coords, speeds).
+   - Structured dynamic dark/light mode context (`ThemeContext.tsx`) toggled manually on the navbar and syncing class configurations dynamically.
+   - Core palette: Charcoal base (`#12161A`), slate grey surfaces (`#1F262E`), architectural light base (`#F4F6F8`), signal blue (`#0066FF`), safety orange (`#FF5500`).
+   - Rigid bento box grid geometry (4px maximum borders radius, no soft drop shadows).
+
+2. **Shared Layout Elements**:
+   - **Navbar**: Uppercase navigation paths, dynamic monospaced GSM status indicator (`SYS_OK // MTN_SYNCING` switching networks in real-time), manual theme toggle.
+   - **Footer**: Integrated multi-field config intake data grid, persistent bottom action bar on desktop, and simplified base configuration logs (removing the requested legal section).
+
+3. **Page Routings**:
+   - `/` (Home): Complete hero, live-ticker telematics table, ROI sliders computing fuel and accident reductions, offline redundancy cards, package pricing tiers.
+   - `/features-&-technology`: Dynamic specification tabs (hard specs, orange/mtn swap protocols, siphoning math), terminal configuration form.
+   - `/admin-dashboard`: Real-time operator dashboard console, highlighting violations log, fuel logs, driver behavior analytics, geofences, and webhook dispatcher.
+   - `/driver-portal`: Tactile mobile-first layout with cabin speedometer widget, geofence log timeline, and manual database force sync triggers.
+   - `/pricing-&-fleet-calculator`: Full ROI calculations page, tiered packages, FAQs, and integration spec listings.
+   - `/about-us`: Mission statement, timeline logs, corridors mapping (N3, N4, N8 lanes), team profiles, hardware sovereignty details.
+   - `/contact-&-support`: Regional center maps (Douala, Yaoundé, Bafoussam), document download modules, network link latency bars.
+
+4. **Integration Backend API**:
+   - Created Next.js API handler (`/api/v1/telemetry`) simulated telemetry coordinate parsing, outbound SMS speed breach notification routing, and client configuration logs.
+
+---
+
+*Date: June 21, 2026*
+*Status: All files deployed and synchronized.*
+
+}
+

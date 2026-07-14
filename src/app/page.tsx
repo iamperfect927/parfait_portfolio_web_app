@@ -16,13 +16,126 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { projectsData } from "@/data/projects";
 
+/* ---------- Icon components (declared outside render to avoid re-creation) ---------- */
+
+function DownloadIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+    </svg>
+  );
+}
+
+function ArrowRightIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+    </svg>
+  );
+}
+
+function GithubIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.556-1.113-4.556-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.339 18.337V9.75H5.667v8.587h2.672ZM7.005 8.634c.93 0 1.512-.615 1.512-1.386-.017-.788-.58-1.387-1.494-1.387-.914 0-1.513.6-1.513 1.387 0 .77.582 1.386 1.478 1.386h.017ZM18.336 18.337h-2.671v-4.797c0-1.2-.43-2.02-1.502-2.02-.82 0-1.307.552-1.522 1.085-.078.19-.098.456-.098.722v5.01h-2.672s.035-8.13 0-8.587h2.672v1.217c.355-.548 1-1.33 2.427-1.33 1.771 0 3.099 1.158 3.099 3.646l-.001 5.054Z" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 text-text-accent shrink-0 text-text-secondary">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a1.5 1.5 0 0 0 1.5-1.5v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5a2.25 2.25 0 0 0-2.25 2.25v1.25Z" />
+    </svg>
+  );
+}
+
+function ArrowLeftIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+    </svg>
+  );
+}
+
+/* ---------- Home Page ---------- */
+
+// SAMPLE DATA — for layout/testing only. Replace with real client
+// testimonials before publishing; do not ship invented reviews.
+// Avatars are generated illustrations (DiceBear), not real people.
+const testimonials = [
+  {
+    name: "Amara Nwosu",
+    role: "Founder, Lumen Retail",
+    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Amara+Nwosu&backgroundColor=1f1f24",
+    text: "Parfait built our mobile app from scratch and it's been rock solid since launch. Clear communication throughout and he actually pushed back on features that would've slowed the app down — that kind of judgment is rare.",
+  },
+  {
+    name: "David Okonkwo",
+    role: "CTO, Fintrack Solutions",
+    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=David+Okonkwo&backgroundColor=1f1f24",
+    text: "We brought Parfait in to rebuild our web dashboard and automate a chunk of our manual reporting with AI. Both shipped on time, and the automation alone saved our team several hours a week.",
+  },
+  {
+    name: "Sofia Marchetti",
+    role: "Product Lead, Nimbus Health",
+    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Sofia+Marchetti&backgroundColor=1f1f24",
+    text: "Great eye for product design, not just execution. Parfait asked the right questions early on and the final product needed far fewer revisions than I expected going in.",
+  },
+  {
+    name: "Jean-Baptiste Kamga",
+    role: "Founder, Marché Digital",
+    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Jean-Baptiste+Kamga&backgroundColor=1f1f24",
+    text: "Our e-commerce site needed to work well on low-end phones across shaky connections, which is a hard constraint. Parfait understood that from the first call and delivered exactly what we needed.",
+  },
+  {
+    name: "Hannah Reyes",
+    role: "Operations Manager, Clearpath Logistics",
+    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Hannah+Reyes&backgroundColor=1f1f24",
+    text: "The AI automation Parfait set up for our scheduling workflow replaced a process that used to take one of our staff half a day every week. Straightforward to work with and genuinely solved a real problem for us.",
+  },
+];
+
+// Primary landing page component displaying the home hero banner, about bio, services, projects grid, tools marquee, client testimonials, and contact form.
 export default function Home() {
   const { t } = useLanguage();
+  
+  // Filter state to categorize projects (e.g. all, personal, client, school)
   const [filter, setFilter] = useState("all");
+  // Controls whether all projects are shown or just the first 4
+  const [showAll, setShowAll] = useState(false);
 
   const categories = ["all", "personal", "client", "school"];
-  const filtered = filter === "all" ? projectsData : projectsData.filter((p) => p.category === filter);
+  
+  // Filters projects based on the active selection state, then limits to 4 unless expanded
+  const allFiltered = filter === "all" ? projectsData : projectsData.filter((p) => p.category === filter);
+  const filtered = showAll ? allFiltered : allFiltered.slice(0, 4);
 
+  // Technical stack list mapped to icons and branding hex-colors
   const techStack = [
     { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
     { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
@@ -33,10 +146,12 @@ export default function Home() {
     { name: "PHP", Icon: SiPhp, color: "#777BB4" },
   ];
 
+  // Active index of the visible testimonial card
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
 
+  // Scrolls the horizontal track to the specified card index smoothly
   const scrollToIndex = (index: number) => {
     const track = trackRef.current;
     if (!track) return;
@@ -45,12 +160,15 @@ export default function Home() {
     track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
   };
 
+  // Navigates to the next testimonial card (wrapping around)
   const nextTestimonial = () =>
     scrollToIndex((activeTestimonial + 1) % testimonials.length);
+    
+  // Navigates to the previous testimonial card (wrapping around)
   const prevTestimonial = () =>
     scrollToIndex((activeTestimonial - 1 + testimonials.length) % testimonials.length);
 
-  // Keeps `activeTestimonial` in sync when the user swipes/drags manually
+  // Syncs the active pagination dot as the user manually scrolls/swipes the horizontal track
   const handleScroll = () => {
     const track = trackRef.current;
     if (!track) return;
@@ -60,70 +178,33 @@ export default function Home() {
     setActiveTestimonial(Math.min(index, testimonials.length - 1));
   };
 
-  // Auto-slide
+  // Automatically triggers sliding rotation intervals of 4 seconds unless hovered/paused
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
-      setActiveTestimonial((i) => {
-        const next = (i + 1) % testimonials.length;
-        scrollToIndex(next);
-        return next;
-      });
+      const next = (activeTestimonial + 1) % testimonials.length;
+      setActiveTestimonial(next);
+      scrollToIndex(next);
     }, 4000);
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, activeTestimonial]);
 
-  // SAMPLE DATA — for layout/testing only. Replace with real client
-  // testimonials before publishing; do not ship invented reviews.
-  // Avatars are generated illustrations (DiceBear), not real people.
-  const testimonials = [
-    {
-      name: "Amara Nwosu",
-      role: "Founder, Lumen Retail",
-      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Amara+Nwosu&backgroundColor=1f1f24",
-      text: "Parfait built our mobile app from scratch and it's been rock solid since launch. Clear communication throughout and he actually pushed back on features that would've slowed the app down — that kind of judgment is rare.",
-    },
-    {
-      name: "David Okonkwo",
-      role: "CTO, Fintrack Solutions",
-      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=David+Okonkwo&backgroundColor=1f1f24",
-      text: "We brought Parfait in to rebuild our web dashboard and automate a chunk of our manual reporting with AI. Both shipped on time, and the automation alone saved our team several hours a week.",
-    },
-    {
-      name: "Sofia Marchetti",
-      role: "Product Lead, Nimbus Health",
-      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Sofia+Marchetti&backgroundColor=1f1f24",
-      text: "Great eye for product design, not just execution. Parfait asked the right questions early on and the final product needed far fewer revisions than I expected going in.",
-    },
-    {
-      name: "Jean-Baptiste Kamga",
-      role: "Founder, Marché Digital",
-      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Jean-Baptiste+Kamga&backgroundColor=1f1f24",
-      text: "Our e-commerce site needed to work well on low-end phones across shaky connections, which is a hard constraint. Parfait understood that from the first call and delivered exactly what we needed.",
-    },
-    {
-      name: "Hannah Reyes",
-      role: "Operations Manager, Clearpath Logistics",
-      avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Hannah+Reyes&backgroundColor=1f1f24",
-      text: "The AI automation Parfait set up for our scheduling workflow replaced a process that used to take one of our staff half a day every week. Straightforward to work with and genuinely solved a real problem for us.",
-    },
-  ];
-
-  //contact form
+  // Contact form submission state structures
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
+  // Synchronizes input edits back to the form state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  // Submits the form data and handles transaction loader feedback
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
     try {
-      // TODO: wire this to your actual email service (Formspree, Resend, an API route, etc.)
-      // const res = await fetch("/api/contact", { method: "POST", body: JSON.stringify(formData) });
-      // if (!res.ok) throw new Error();
+      // Mock submit latency to demonstrate send triggers
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch {
@@ -142,70 +223,6 @@ export default function Home() {
   const baseBtn = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold text-sm md:text-base transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer";
   const primaryBtn = `${baseBtn} bg-secondary text-white shadow-lg hover:shadow-secondary/40 hover:bg-secondary-hover`;
   const outlineBtn = `${baseBtn} border-2 border-primary text-primary hover:bg-primary hover:text-white `;
-
-  function DownloadIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-      </svg>
-    );
-  }
-
-  function ArrowRightIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-      </svg>
-    );
-  }
-
-  function GithubIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-        <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.556-1.113-4.556-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
-      </svg>
-    );
-  }
-
-  function LinkedinIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-        <path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.339 18.337V9.75H5.667v8.587h2.672ZM7.005 8.634c.93 0 1.512-.615 1.512-1.386-.017-.788-.58-1.387-1.494-1.387-.914 0-1.513.6-1.513 1.387 0 .77.582 1.386 1.478 1.386h.017ZM18.336 18.337h-2.671v-4.797c0-1.2-.43-2.02-1.502-2.02-.82 0-1.307.552-1.522 1.085-.078.19-.098.456-.098.722v5.01h-2.672s.035-8.13 0-8.587h2.672v1.217c.355-.548 1-1.33 2.427-1.33 1.771 0 3.099 1.158 3.099 3.646l-.001 5.054Z" />
-      </svg>
-    );
-  }
-
-  function CheckIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4 text-text-accent shrink-0 text-text-secondary">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-      </svg>
-    );
-  }
-
-  function MailIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-      </svg>
-    );
-  }
-
-  function PhoneIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a1.5 1.5 0 0 0 1.5-1.5v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5a2.25 2.25 0 0 0-2.25 2.25v1.25Z" />
-      </svg>
-    );
-  }
-
-  function ArrowLeftIcon() {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-      </svg>
-    );
-  }
 
   return (
     <main className="w-full">
@@ -268,23 +285,23 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start ">
+                {/* CV download: use native <a> with download attribute (no target=_blank, which blocks download) */}
                 <a
                   href="/CV_DJIELA_FOMO_AYUK_PARFAIT.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
+                  download="CV_DJIELA_FOMO_AYUK_PARFAIT.pdf"
                   className={`${primaryBtn} shadow-xl shadow-primary/20 inline-flex items-center justify-center`}
                 >
                   {t("hero.resume")}
                   <DownloadIcon />
                 </a>
-                <Link
+                {/* Contact anchor: use native <a> for same-page hash navigation */}
+                <a
                   href="#contact"
                   className={`${outlineBtn} inline-flex items-center justify-center cursor-pointer`}
                 >
                   {t("hero.hireMe")}
                   <ArrowRightIcon />
-                </Link>
+                </a>
               </div>
             </motion.div>
 
@@ -546,7 +563,7 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Grid */}
+          {/* Grid — shows first 4 projects by default, expandable with See More */}
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatePresence>
               {filtered.map((project) => (
@@ -584,6 +601,19 @@ export default function Home() {
               ))}
             </AnimatePresence>
           </motion.div>
+
+          {/* See More / See Less toggle — only shown when more than 4 projects exist */}
+          {allFiltered.length > 4 && (
+            <div className="flex justify-center mt-10">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className={`${primaryBtn} cursor-pointer`}
+              >
+                {showAll ? "See Less" : "See More"}
+                <ArrowRightIcon />
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -692,6 +722,8 @@ export default function Home() {
             <div
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
+              onTouchStart={() => setIsPaused(true)}
+              onTouchEnd={() => setIsPaused(false)}
             >
               <div
                 ref={trackRef}

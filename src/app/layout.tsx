@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { ThemeProvider, useTheme } from "@/context/ThemeContext";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import FAB from "@/components/FAB";
@@ -40,6 +39,8 @@ function MenuIcon({ open }: { open: boolean }) {
 
 /* ---------- Scroll-spy hook (drives active link state) ---------- */
 
+// Custom React hook that utilizes the browser's IntersectionObserver API to spy on vertical scroll intersections.
+// It automatically updates the active navigation tab based on which section dominates the mid-band of the viewport.
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState(ids[0] ?? "");
 
@@ -77,12 +78,18 @@ function useActiveSection(ids: string[]) {
 
 /* ---------- Navbar ---------- */
 
+// Global Navigation Bar component. Handles sticky positioning, active tab tracking via Scroll Spy,
+// social icon linking, and cycles the interface language 3-ways.
 function Navbar() {
-  const { theme, toggleTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleLanguage = () => setLanguage(language === "en" ? "fr" : "en");
+  // Cycles language cyclically: English (en) -> French (fr) -> German (de) -> English (en)
+  const toggleLanguage = () => {
+    if (language === "en") setLanguage("fr");
+    else if (language === "fr") setLanguage("de");
+    else setLanguage("en");
+  };
 
   // Add these keys to your LanguageContext translations (en/fr) if they
   // aren't there yet: nav.home, nav.about, nav.services, nav.projects, nav.contact
@@ -114,7 +121,7 @@ function Navbar() {
 
   const mobileLinkClasses = (href: string) => {
     const isActive = activeSection === href.replace("#", "");
-    return `text-2xl font-bold transition-colors ${isActive ? "text-foreground" : "text-foreground/40 hover:text-primary"
+    return `text-lg font-bold transition-colors ${isActive ? "text-foreground" : "text-foreground/40 hover:text-primary"
       }`;
   };
 
@@ -229,7 +236,7 @@ function Navbar() {
                   </a>
                 </div>
 
-                <button onClick={toggleLanguage} className="text-xl font-bold uppercase text-foreground hover:text-primary">
+                <button onClick={toggleLanguage} className="text-lg font-bold uppercase text-foreground hover:text-primary">
                   Language: {language}
                 </button>
               </div>
@@ -243,13 +250,7 @@ function Navbar() {
 
 /* ---------- Footer ---------- */
 
-function BackToTopIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-    </svg>
-  );
-}
+
 
 function Footer() {
   const { t } = useLanguage();
@@ -356,6 +357,8 @@ function Footer() {
 
 /* ---------- Root Layout ---------- */
 
+// Global root layout component representing the HTML shell.
+// Bootstraps external Google fonts, loads global styles, and sets up contextual Language scopes.
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -372,14 +375,12 @@ export default function RootLayout({
         />
       </head>
       <body className="transition-colors duration-300 antialiased">
-        <ThemeProvider>
-          <LanguageProvider>
-            <Navbar />
-            {children}
-            <Footer />
-            <FAB />
-          </LanguageProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <FAB />
+        </LanguageProvider>
       </body>
     </html>
   );

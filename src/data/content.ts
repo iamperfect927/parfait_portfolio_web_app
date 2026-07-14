@@ -1,7 +1,8 @@
 
 interface ContentType {
-  en: any;
-  fr: any;
+  en: Record<string, unknown>;
+  fr: Record<string, unknown>;
+  de: Record<string, unknown>;
 }
 
 export const content: ContentType = {
@@ -107,40 +108,182 @@ export const content: ContentType = {
       about: "À Propos",
       services: "Services",
       projects: "Projets",
+      testimonials: "Témoignages",
       contact: "Contact",
     },
     hero: {
-      title: "Salut, je suis Développeur Web Frontend & Applications Mobiles",
-      subtitle: "Minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+      greeting: "👋 Bonjour, je suis Parfait",
+      title: "Créer des Expériences",
+      titleHighlight: "Web & Mobiles Transparentes.",
+      description: "Je suis un développeur frontend avec plus de 4 ans d'expérience dans la transformation d'idées en produits rapides et accessibles — des sites web réactifs aux applications mobiles multiplateformes.",
+      experience: "Plus de 4 ans d'expérience",
       resume: "Télécharger CV",
+      hireMe: "Engagez-moi",
     },
     about: {
-      title: "À Propos",
-      desc1: "Je suis un développeur Full Stack passionné avec de l'expérience dans la création d'applications web et mobiles.",
-      desc2: "Mon expertise couvre React, Next.js, Node.js et les frameworks CSS modernes comme Tailwind. Quand je ne code pas, je suis à la recherche de nouvelles technologies.",
-      cta: "Lire Plus"
+      subtitle: "À Propos de Moi",
+      title: "Création de",
+      titleHighlight: "Produits Numériques",
+      titleEnd: "De l'Idée au Lancement",
+      desc1: "Je suis un développeur full stack qui conçoit des applications web et mobiles, conçoit des produits logiciels de bout en bout et automatise les flux de travail avec l'IA — transformant les idées en produits que les gens utilisent réellement.",
+      skill1: "Développement Mobile",
+      skill2: "Développement Web",
+      skill3: "Automatisation IA",
+      skill4: "Design de Produits",
+      emailLabel: "Envoyez-nous un e-mail",
+      callLabel: "Passer un appel",
+      cta: "En savoir plus",
+    },
+    services: {
+      subtitle: "Ce que je fais",
+      title: "Mes",
+      titleHighlight: "Services",
+      titleEnd: "Pour Votre Prochain Produit",
+      item1Title: "Développement Mobile",
+      item1Desc: "Applications multiplateformes conçues pour la performance et une expérience utilisateur fluide.",
+      item2Title: "Développement Web",
+      item2Desc: "Sites web et applications rapides et réactifs construits avec des frameworks modernes.",
+      item3Title: "Automatisation IA",
+      item3Desc: "Flux de travail et outils alimentés par l'IA pour gagner du temps et réduire les tâches manuelles.",
+      item4Title: "Design de Produits Logiciels",
+      item4Desc: "Design de produit de bout en bout, du concept et UX à une version finale et publiable.",
     },
     works: {
-      title: "Projets Récents",
-      subtitle: "Explorez mes derniers projets, allant des applications web aux interfaces mobiles.",
+      title: "Mes Derniers Travaux",
+      subtitle: "Je crois que travailler dur et essayer d'apprendre chaque jour me permettra de mieux satisfaire mes clients.",
       filter: {
         all: "Toutes Catégories",
         personal: "Personnel",
         client: "Client",
-        school: "École"
-      }
+        school: "École",
+      },
+      viewAll: "Voir tous les projets",
     },
-
+    tools: {
+      title: "Outils & Technologies avec lesquels je travaille",
+      subtitle: "Les langages, frameworks et plateformes que j'utilise pour concevoir des applications mobiles, des sites web et des produits alimentés par l'IA.",
+    },
+    testimonials: {
+      subtitle: "Témoignages de Clients",
+      title: "Ce que les gens disent",
+      titleHighlight: "Sur mon travail",
+      desc: "Retours d'expérience des personnes avec qui j'ai collaboré sur des projets réels.",
+    },
     contact: {
-      title: "Me Contacter",
-      subtitle: "Vous avez un projet en tête ou voulez simplement dire bonjour ? Remplissez le formulaire ci-dessous.",
+      title: "Contactez-moi",
+      subtitle: "Je suis toujours ravi de relever de nouveaux défis et de collaborer avec des personnes créant des produits intéressants. Si vous avez un projet en tête — ou si vous voulez simplement discuter — contactez-moi.",
+      formTitle: "Laisser un Message",
       form: {
-        name: "Nom",
-        email: "Email",
+        name: "Votre Nom",
+        email: "Adresse E-mail",
         subject: "Sujet",
+        subjectPlaceholder: "Je souhaite parler de...",
         message: "Message",
-        send: "Envoyer Message"
-      }
-    }
+        messagePlaceholder: "Votre message ici...",
+        submit: "Envoyer le Message",
+        sending: "Envoi en cours...",
+        success: "Merci ! Je vous répondrai très bientôt.",
+        error: "Une erreur s'est produite. Veuillez réessayer ou m'envoyer un e-mail directement.",
+      },
+    },
+    footer: {
+      blurb: "Développeur frontend créant des applications mobiles, des sites web et des produits alimentés par l'IA — de l'idée initiale au déploiement final.",
+      linksTitle: "Liens Rapides",
+      contactTitle: "Me Contacter",
+      location: "Buea, Cameroun",
+      rights: "Tous droits réservés.",
+    },
+  },
+  de: {
+    nav: {
+      home: "Startseite",
+      about: "Über mich",
+      services: "Dienstleistungen",
+      projects: "Projekte",
+      testimonials: "Referenzen",
+      contact: "Kontakt",
+    },
+    hero: {
+      greeting: "👋 Hallo, ich bin Parfait",
+      title: "Nahtlose Web- &",
+      titleHighlight: "Mobile Erlebnisse entwickeln.",
+      description: "Ich bin ein Frontend-Entwickler mit über 4 Jahren Erfahrung darin, Ideen in schnelle, barrierefreie Produkte zu verwandeln — von responsiven Websites bis hin zu plattformübergreifenden mobilen Apps.",
+      experience: "Über 4 Jahre Erfahrung",
+      resume: "Lebenslauf herunterladen",
+      hireMe: "Kontakt aufnehmen",
+    },
+    about: {
+      subtitle: "Über mich",
+      title: "Entwicklung von",
+      titleHighlight: "digitalen Produkten",
+      titleEnd: "von der Idee bis zum Launch",
+      desc1: "Ich bin ein Full-Stack-Entwickler, der Web- und mobile Anwendungen baut, Softwareprodukte von Grund auf konzipiert und Workflows mit KI automatisiert — um Ideen in Produkte zu verwandeln, die Menschen tatsächlich nutzen.",
+      skill1: "Mobile App Entwicklung",
+      skill2: "Webentwicklung",
+      skill3: "KI-Automatisierung",
+      skill4: "Produkt-Design",
+      emailLabel: "E-Mail schreiben",
+      callLabel: "Anrufen",
+      cta: "Mehr lesen",
+    },
+    services: {
+      subtitle: "Was ich tue",
+      title: "Meine",
+      titleHighlight: "Dienstleistungen",
+      titleEnd: "für Ihr nächstes Produkt",
+      item1Title: "Mobile App Entwicklung",
+      item1Desc: "Plattformübergreifende Apps, optimiert für Leistung und eine flüssige Benutzererfahrung.",
+      item2Title: "Webentwicklung",
+      item2Desc: "Schnelle, responsive Websites und Web-Apps mit modernen Frameworks entwickelt.",
+      item3Title: "KI-Automatisierung",
+      item3Desc: "KI-gestützte Workflows und Tools zur Zeitersparnis und Reduzierung manueller Arbeit.",
+      item4Title: "Software-Produktdesign",
+      item4Desc: "End-to-End-Produktdesign, vom Konzept und UX bis hin zum fertigen, auslieferbaren Build.",
+    },
+    works: {
+      title: "Meine neuesten Arbeiten",
+      subtitle: "Ich glaube, dass harte Arbeit und tägliches Lernen mich dabei unterstützen, meine Kunden bestmöglich zufrieden zu stellen.",
+      filter: {
+        all: "Alle Kategorien",
+        personal: "Persönlich",
+        client: "Kunde",
+        school: "Schule",
+      },
+      viewAll: "Alle Projekte ansehen",
+    },
+    tools: {
+      title: "Werkzeuge & Technologien, mit denen ich arbeite",
+      subtitle: "Die Sprachen, Frameworks und Plattformen, die ich verwende, um mobile Apps, Websites und KI-gestützte Produkte zu erstellen.",
+    },
+    testimonials: {
+      subtitle: "Kunden-Referenzen",
+      title: "Was andere sagen",
+      titleHighlight: "Über meine Arbeit",
+      desc: "Feedback von Menschen, mit denen ich an realen Projekten zusammengearbeitet habe.",
+    },
+    contact: {
+      title: "Kontakt",
+      subtitle: "Ich freue mich immer über neue Projekte und die Zusammenarbeit mit Menschen, die interessante Produkte entwickeln. Wenn Sie eine Idee haben — oder einfach nur fachsimpeln wollen — melden Sie sich.",
+      formTitle: "Nachricht hinterlassen",
+      form: {
+        name: "Ihr Name",
+        email: "E-Mail-Adresse",
+        subject: "Betreff",
+        subjectPlaceholder: "Ich möchte sprechen über...",
+        message: "Nachricht",
+        messagePlaceholder: "Ihre Nachricht hier...",
+        submit: "Nachricht senden",
+        sending: "Wird gesendet...",
+        success: "Danke! Ich werde mich in Kürze bei Ihnen melden.",
+        error: "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt eine E-Mail.",
+      },
+    },
+    footer: {
+      blurb: "Frontend-Entwickler, der mobile Apps, Websites und KI-gestützte Produkte erstellt — von der ersten Idee bis zum finalen Deployment.",
+      linksTitle: "Schnelllinks",
+      contactTitle: "Kontakt",
+      location: "Buea, Kamerun",
+      rights: "Alle Rechte vorbehalten.",
+    },
   },
 };

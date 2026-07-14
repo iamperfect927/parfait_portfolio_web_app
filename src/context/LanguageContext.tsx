@@ -17,14 +17,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const t = (path: string): string => {
     const keys = path.split('.');
-    let current: any = content[language];
+    let current: unknown = content[language];
     
     for (const key of keys) {
-      if (current[key] === undefined) {
+      if (!current || typeof current !== 'object' || (current as Record<string, unknown>)[key] === undefined) {
         console.warn(`Translation key not found: ${path}`);
         return path;
       }
-      current = current[key];
+      current = (current as Record<string, unknown>)[key];
     }
     
     return current as string;

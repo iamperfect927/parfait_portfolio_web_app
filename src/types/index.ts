@@ -1,5 +1,5 @@
-export type Theme = 'light' | 'dark';
-export type Language = 'en' | 'fr';
+// Supported languages in the application: English (en), French (fr), German (de)
+export type Language = 'en' | 'fr' | 'de';
 
 export interface Project {
   id: string;
